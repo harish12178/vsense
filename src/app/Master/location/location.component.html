@@ -1,0 +1,67 @@
+<div fxLayout="row" fxLayoutAlign="start start" style="height: 89.5%;">
+    <div class="left_side">
+        <div fxLayout="column" fxLayoutAlign="start center" style="margin-top: 1rem;">
+            <div fxLayout="row" fxLayoutAlign="center center" class="searchbar">
+                <input class="inputfield" placeholder="Search" style="margin-left: 0.5rem;">
+                <img src="assets/images/search.svg" style="width: 15px; margin-right: 0.5rem;">
+            </div>
+            <mat-selection-list [multiple]="false" [disableRipple]="true" #mdevices style="width: 100%;margin-bottom: 1.5rem;" class="matlist">
+                <mat-list-option class="cards" *ngFor="let item of locs;index as i" [selected]="i==0 && !isCreate" [value]="item.locationID" (click)="getselected(mdevices.selectedOptions.selected[0]?.value)">
+                    <div style="width: 100%;height: 100%;padding-left: 3%;" fxLayout="column" fxLayoutAlign="center start">
+                        <div fxLayout="row" fxLayoutAlign="space-between center" style="width: 100%;">
+                            <span style="font-weight: 500;
+                        letter-spacing: 0.5px;font-size: 15px;">{{item.locationID}}</span>
+                            <span style="font-size: 14px;">{{item.createdOn | date:'dd/MM/yyyy'}}</span>
+                        </div>
+                        <span style="font-size: 13px;
+                        opacity: 0.6;">{{item.lcoationText}}</span>
+                    </div>
+                </mat-list-option>
+            </mat-selection-list>
+        </div>
+    </div>
+    <div class="right_side">
+        <form [formGroup]="mform">
+        <div fxLayout="row wrap" fxLayoutAlign="space-between center" style="padding-left: 3%;
+        padding-right: 3%;">
+            <mat-form-field class="form_field" *ngIf="isCreate">
+                <mat-label>LocationID</mat-label>
+                <input matInput autocomplete="off" formControlName="locationID">
+            </mat-form-field>
+            <mat-form-field class="form_field">
+                <mat-label>LocationText</mat-label>
+                <input matInput autocomplete="off" formControlName="lcoationText">
+            </mat-form-field>
+            <mat-form-field class="form_field">
+                <mat-label>WorkCenter</mat-label>
+                <input matInput autocomplete="off" formControlName="workCenter">
+            </mat-form-field>
+            <mat-form-field class="form_field">
+                <mat-label>Plant</mat-label>
+                <input matInput autocomplete="off" formControlName="plant">
+            </mat-form-field>
+            <mat-form-field class="form_field">
+                <mat-label>Geo</mat-label>
+                <input matInput autocomplete="off" formControlName="geo">
+            </mat-form-field>
+            <mat-form-field class="form_field">
+                <mat-label>ParantLocationID</mat-label>
+                <input matInput autocomplete="off" formControlName="parantLocationID">
+            </mat-form-field>
+        </div>
+        </form>
+        <button mat-fab color="primary" (click)="create()" style="position: absolute;
+        bottom: 5rem;
+        right: 3rem;
+        background-color: #4660CE;">
+            <mat-icon>add</mat-icon>
+          </button>
+        <div class="footer" fxLayout="row" fxLayoutAlign="end center">
+            <button *ngIf="!isCreate" class="foo_button1" mat-button (click)="handle_delete()">Delete</button>
+            <button *ngIf="!isCreate" class="foo_button2" mat-button (click)="handle_update()">Update</button>
+            <button *ngIf="isCreate" class="foo_button1" mat-button (click)="handle_clear()">Clear</button>
+            <button *ngIf="isCreate" class="foo_button2" mat-button (click)="handle_create()">Create</button>
+        </div>
+    </div>
+</div>
+

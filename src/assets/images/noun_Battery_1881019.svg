@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="22.131" height="19.639" viewBox="0 0 22.131 19.639">
+    <defs>
+        <style>
+            .cls-2{fill:#91b3ea}
+        </style>
+    </defs>
+    <g id="noun_Battery_1881019" transform="translate(-34 -59)">
+        <g id="Group_1546" transform="translate(34 59)">
+            <path id="Path_3984" fill="#174eda" d="M56.131 78.14V62.335a.491.491 0 0 0-.493-.493h-1.9V59.5a.522.522 0 0 0-.523-.5h-4.391a.517.517 0 0 0-.518.5v2.343h-6.48V59.5a.517.517 0 0 0-.518-.5h-4.392a.522.522 0 0 0-.523.5v2.343H34.5a.5.5 0 0 0-.5.488V78.14a.5.5 0 0 0 .493.5h21.139a.5.5 0 0 0 .5-.5zM49.3 60h3.439v1.844H49.3zm-11.911 0h3.439v1.844h-3.439zm17.745 17.642H35v-14.8h20.134z" transform="translate(-34 -59)"/>
+            <path id="Path_3986" d="M103.5 170.193h.7v.7a.5.5 0 0 0 1 0v-.7h.648a.5.5 0 0 0 0-1h-.648v-.7a.5.5 0 0 0-1 0v.7h-.7a.5.5 0 0 0 0 1z" class="cls-2" transform="translate(-99.561 -162.567)"/>
+            <path id="Path_3987" d="M342.5 193h2.343a.5.5 0 0 0 0-1H342.5a.5.5 0 1 0 0 1z" class="cls-2" transform="translate(-326.648 -185.371)"/>
+            <rect id="Rectangle_1222" width="16" height="7" class="cls-2" rx="1" transform="translate(3.065 9.819)"/>
+            <path id="Rectangle_1223" d="M0 0H2.5V1.4H0z" class="cls-2" transform="translate(3.865 1.219)"/>
+            <path id="Rectangle_1224" d="M0 0H2.5V1.4H0z" class="cls-2" transform="translate(15.865 1.219)"/>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,346 @@
+.formmargin{
+    padding-left: 2%;
+    padding-right: 2%;
+    margin-bottom: 2rem;
+    
+}
+.underline1{
+    width: 8rem;
+    border: 1px solid #fb863a;
+    border-radius: 4px;
+margin-top: 4px;
+}
+.underline3{
+    width: 9rem;
+    border: 1px solid #fb863a;
+    border-radius: 4px;
+margin-top: 4px;
+}
+.underline4{
+    width: 5rem;
+    border: 1px solid #fb863a;
+    border-radius: 4px;
+margin-top: 4px;
+}
+  .box1{
+      width:100%;
+  }
+  .box2{
+    width: 23rem;
+      margin-top:1rem;
+  height: 200px;
+  -webkit-backdrop-filter: blur(30px);
+  backdrop-filter: blur(30px);
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  }
+.tit1{
+width:fit-content;
+margin-top: 0.8rem;
+color: #2e2e2e;
+font-weight:500; 
+letter-spacing: 0.6px;
+}
+.tit2{
+width:fit-content;
+    margin-top: 1.5rem;
+font-weight:bold; 
+font-size: 16px;
+    letter-spacing: 1px;
+color: #464646;
+margin-bottom:1.8rem;
+}
+.underline2{
+     width: 2rem;
+    border: 1px solid #fb863a;
+    border-radius: 4px;
+margin-top: 4px;
+}
+.tableborder{
+    border: 1px solid #dbd9d9;
+}
+.colheader{
+    background-color:  #2A4579;
+}
+.headercolor{
+    color: white; 
+    height:44px;
+    font-size:12px
+
+}
+.boldtext{
+    font-weight: 500;
+
+}
+.divbox{
+    width: 12px;
+    height: 22px;
+  opacity: 0.6;
+  margin-right: 18px;
+background:#ffffff;
+}
+.alignbox{
+margin-left:-24px;
+margin-right:24px;
+height: 65px;
+}
+.alignhead{
+margin-left:7px;
+margin-right:-7px;
+}
+.call{
+width: 5rem;
+    border: solid 1px #25ae88;
+    background-color: transparent;
+    color: #3b3b3b;
+    font-size: 12px;
+    font-weight: 500;
+    text-align: center;
+    border-left: none;
+    margin-left: -7px;
+}
+.aligncenter{
+justify-content:center;
+}
+.track{
+width:70%;
+height:2rem;
+border-radius: 3px;
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.16);
+  border: solid 1px #de6444;
+  background-color: #ffffff;
+}
+.circle{
+width:1rem;
+height:1rem;
+display:flex;
+align-items:center;
+justify-content:center;
+border: solid 1px #656565;
+  background-color: #ffffff;
+border-radius:50%
+}
+.round{
+width: 0.4rem;
+    height: 0.4rem;
+border: solid 4px #34ad65;
+background-color: #ffffff;
+border-radius:50%;
+}
+.round1{
+width: 0.4rem;
+    height: 0.4rem;
+border: solid 4px #efb577;
+background-color: #ffffff;
+border-radius:50%;
+}
+.round2{
+width: 0.4rem;
+    height: 0.4rem;
+border: solid 4px #505050;
+background-color: #ffffff;
+border-radius:50%;
+}
+.prgr{
+font-size:8px;
+opacity:0.5;
+}
+.po{
+font-size:8px;
+}
+.bar1{
+height: 0.1rem;
+    width: 3.5rem;
+  border: solid 1px #e6e6e6;
+  background-color: #ffffff;
+}
+.bar{
+height: 0.3rem;
+    width: 3.5rem;
+
+  background-color: #34ad65;
+}
+.bar2{
+height: 0.3rem;
+    width: 0.3rem;
+
+  background-color: #efb577;
+}
+.mat-header-row, .mat-row {
+  min-height: 30px;
+}
+.callalign{
+margin-left: -7%;
+    margin-right: 4%;
+}
+.truckalign{
+margin-left:-1%;
+}
+.alertalign{
+margin-left:1%;
+}
+.circle_orange{
+width: 0.7rem;
+    height: 11px;
+    background-color: #fb863a;
+    border-radius: 50%;
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+}
+.circle_blue{
+width: 0.7rem;
+    height: 0.7rem;
+    background-color: #40a8e2;;
+    border-radius: 50%;
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+}
+.circle_black{
+width: 0.7rem;
+    height: 0.7rem;
+    background-color: #485865;
+    border-radius: 50%;
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+}
+.circle_green{
+width: 0.7rem;
+    height: 0.7rem;
+    background-color: #40ed9a;
+    border-radius: 50%;
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+}
+.circle_active{
+    width: 0.7rem;
+    height: 0.7rem;
+    background-color: #5fc546;
+    border-radius: 50%;
+    margin-left: 1.5rem;
+    margin-right: .5rem;
+}
+.pielegendtxt{
+color: #505050;
+}
+.vdevider{
+height: 150px;
+    border-left: 1px solid #f4f4f4;
+    margin-top: 27px;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+.chart-container{
+    margin-top: 28px;
+    width: 280px;
+    margin-left: -4.5rem;
+    margin-right: -3rem;
+    height: 160px;
+}
+
+.pieheading{
+color: #191919;
+font-size: 14px;
+    padding-left: 7rem;
+letter-spacing: .3px;
+}
+.scircle_orange{
+width: 0.5rem;
+    height: 0.5rem;
+    background-color: #e46c53;
+    border-radius: 50%;
+margin-left: 2rem;
+}
+.scircle_blue{
+width: 0.5rem;
+    height: 0.5rem;
+    background-color: #3991dc;
+    border-radius: 50%;
+margin-left: 7rem;
+}
+.pielegendtxt1{
+    font-size: 10px;
+color: #000000;
+  opacity: 0.9;
+  font-family: Ubuntu;
+margin-left: 0.5rem;
+}
+:hover.hovereffect{
+cursor: pointer;
+background-color: antiquewhite;
+}
+.hide{
+    display: none;
+}
+.searchbar{
+    border: solid 1px #c3c3c3;
+      background-color: #ffffff;
+    width:50%;
+    height:34px;
+    }
+    .inputfield{
+    width: 100%;
+        height: 30px;
+        border: none;
+        font-size: 14px;
+        font-family: unset;
+        color: #000000b3;
+    }
+    .mainselect{
+    height: 34px;
+    width:8rem;
+    border-radius: 3px;
+      border: solid 1px #c3c3c3;
+      background-color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .cellselect{
+        height: 32px;
+        width:7rem;
+        border-radius: 3px;
+          border: solid 1px #c3c3c3;
+          background-color: #ffffff;
+          display: flex;
+    align-items: center;
+    justify-content: center;
+        }
+        .inputfield:focus{
+        outline:none;
+        }
+.locbox{
+    width: 35px;
+    height: 35px;
+    border-radius: 4px;
+    border: solid 1px #ff8989;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 13px;
+    font-weight: 500;
+    margin-left: 0.3rem;
+    margin-right: 2rem;
+}
+.list_sep{
+    border-top: 1px solid #f4f4f4;
+    width:90%;
+    margin-left: 5%;
+    margin-top: 3px;
+}
+.box2::-webkit-scrollbar {
+    display: none;
+}
+.actionselect{
+    width: 5rem;
+}
+.actionselect1{
+    width: 6rem;
+}
+::ng-deep .mat-select-placeholder {
+    color: black !important;
+    font-size: 13px;
+}
+::ng-deep .myPanelClass{
+    margin-top: -8rem; 
+}

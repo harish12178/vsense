@@ -1,0 +1,306 @@
+.formmargin{
+    padding-left: 2%;
+    padding-right: 2%;
+    margin-bottom: 1rem;
+    
+}
+.rectanglebox{
+  width: 100%;
+  height: 150px;
+  margin-top:1rem;
+  border-radius: 2px;
+  -webkit-backdrop-filter: blur(30px);
+  backdrop-filter: blur(30px);
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+}
+.tit2{
+width:fit-content;
+    margin-top: 1.5rem;
+font-weight:bold; 
+font-size: 16px;
+    letter-spacing: 1px;
+color: #464646;
+margin-bottom:1rem;
+}
+.underline2{
+     width: 2rem;
+    border: 1px solid #fb863a;
+    border-radius: 4px;
+margin-top: 4px;
+}
+.address{
+color: #000000;
+opacity: 0.8;
+font-weight: 500;
+font-size:11px;
+}
+.truckd{
+color: #000000;
+font-weight: 500;
+font-size:16px;
+}
+.datetime{
+font-size: 13px;
+color: #000000;
+}
+.smallvdivider{
+    height: 2px;
+        border-left: solid 1px #000000;
+        margin-left: 8px;
+        opacity: 0.4;
+    }
+.filter{
+    width: 34px;
+    height: 27px;
+    border-radius: 3px;
+    border: solid 1px #4279e5;
+  background-color: #ffffff;
+  display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.toggle1{
+    width: 34px;
+    height: 27px;
+  background-color: #ffffff;
+  display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.toggle2{
+    width: 34px;
+    height: 27px;
+  background-color:#4279e5;
+  display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.excel{
+    height: 27px;
+    width:8.5rem;
+    border-radius: 3px;
+  border: solid 1px #2e7d32;
+  background-color: #ffffff;
+}
+.boxA{
+    border-radius: 2px;
+  -webkit-backdrop-filter: blur(30px);
+  backdrop-filter: blur(30px);
+  box-shadow: 0 0 7px 0 rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+}
+.tit1{
+    width: 100%;
+    color: #4a4a4a;
+    font-weight:500; 
+    letter-spacing: 0.6px;
+    }
+.underline1{
+        width: 100%;
+       border: 1px solid #fb863a;
+       border-radius: 4px;
+       opacity:0.7;
+   margin-top: 4px;
+   }
+   .underline2{
+    width: 100%;
+   border: 1px solid #ffd15c;
+   border-radius: 4px;
+margin-top: 4px;
+}
+
+.underlineg{
+  width: 50%;
+ border: 1px solid #f3f3f3;
+ border-radius: 4px;
+margin-top: 4px;
+margin-bottom: 1rem;
+}
+.gheading{
+  margin-top: 1rem;
+  color: #a2a2a2;
+  font-weight: 500;
+  letter-spacing: 0.42px;
+  margin-left: 1.5rem;
+}
+.gsub{
+  letter-spacing: 0.26px;
+  color: #a2a2a2;
+  font-weight: 500;
+  font-size:12px;
+}
+.good{
+font-size: 22px;
+letter-spacing: 1.08px;
+color: #4a4a4a;
+font-weight: bold;
+margin-left: 60px;
+margin-top: 0.5rem;
+}
+.p-indi{
+  color: #727272;
+  letter-spacing: 0.13px;
+  font-size: 10px;
+  transform: rotate(90deg);
+}
+.p_bars{
+  width: 62%;
+    margin-bottom: 2rem;
+}
+::ng-deep .bluebar .mat-progress-bar-fill::after {
+  background-color: #3280e5;
+}
+::ng-deep .orangebar .mat-progress-bar-fill::after {
+  background-color: #fb863a;
+}
+::ng-deep .yellowbar .mat-progress-bar-fill::after {
+  background-color: #ffd15c;
+}
+::ng-deep .greenbar .mat-progress-bar-fill::after {
+  background-color: #7ccd38;
+}
+::ng-deep .pingbar .mat-progress-bar-fill::after {
+  background-color: #ed5565;
+}
+::ng-deep .mat-progress-bar-buffer {
+  background: #f4f4f4;
+}
+::ng-deep .mat-progress-bar {
+  border-radius: 6px;
+    height: 10px !important;
+}
+.circle_blue{
+  width: 14px;
+    height: 14px;
+      background-color: #3280e5;
+      border-radius: 50%;
+      margin-left: 1.5rem;
+      margin-right: 0.7rem;
+  }
+  .circle_orange{
+    width: 14px;
+    height: 14px;
+      background-color: #fb863a;;
+      border-radius: 50%;
+      margin-left: 1.5rem;
+      margin-right: 0.7rem;
+  }
+  .circle_yellow{
+    width: 14px;
+    height: 14px;
+      background-color: #ffd15c;
+      border-radius: 50%;
+      margin-left: 1.5rem;
+      margin-right: 0.7rem;
+  }
+  .circle_green{
+    width: 14px;
+    height: 14px;
+      background-color: #7ccd38;
+      border-radius: 50%;
+      margin-left: 1.5rem;
+      margin-right: 0.7rem;
+  }
+  .circle_pink{
+    width: 14px;
+    height: 14px;
+      background-color: #ed5565;
+      border-radius: 50%;
+      margin-left: 1.5rem;
+      margin-right: 0.7rem;
+  }
+  .legendtxt{
+    color: #777777;
+    letter-spacing: 0.15px;
+    font-size: 13px;
+  }
+  .vdevider{
+    height: 175px;
+    border: 1px solid #f3f3f3;
+    border-radius: 4px;
+    margin-left: 5%;
+    margin-right: 5%;
+    }
+    .vdevider2{
+      height: 90px;
+    border: 1px solid #f3f3f3;
+    border-radius: 4px;
+    margin-left: 10%;
+    margin-right: 10%;
+    }
+    .fuelcontainer{
+      width: 120px;
+      height: 120px;
+      background: linear-gradient(90deg, rgba(254,254,254,1) 0%, rgba(238,238,238,1) 100%);
+      border-radius: 50%;
+      margin-top: 1rem;
+      border: 1px solid #dedede;
+    }
+    .fuelchart{
+      width: 11.5rem;
+    margin-top: -17px;
+    margin-left:5px;
+    }
+    .border_circle{
+      width: 76px;
+      height: 76px;
+      border-radius: 50%;
+      border: 1px solid #dedede;
+      background: white;
+      margin-top: -93px;
+      margin-left: 22px;
+    }
+    .dash_border{
+      /* width: 68px;
+    height: 68px;
+    border-radius: 50%;
+    background: transparent;
+    border: 2px #707070;
+    border-style: dotted;
+    opacity: 0.4;
+    margin-top: -74px;
+    margin-left: 23px; */
+
+    width: 68px;
+    height: 68px;
+    border-radius: 50%;
+    background: transparent;
+    border: 1px #707070;
+    border-style: dotted;
+    opacity: 0.4;
+    margin-top: -72px;
+    margin-left: 26px;
+    }
+
+    .border_circle_2{
+      width: 79px;
+      height: 79px;
+      border: 2.5px solid #dedede;
+      background-color: white;
+      border-radius: 50%;
+      margin-top: -110px;
+      margin-left: 96px;
+      display: flex;
+    }
+    .smalltxt{
+      font-size: 6px;
+      color:#8a8fa8;
+      letter-spacing: 0.6px;
+      font-weight: 500;
+    }
+    .temp_container{
+      margin-left: -25px;
+    margin-right: -400px;
+    }
+.axis_container{
+  margin-right: -20rem;
+  margin-left: 21px;
+  margin-top: 3px;
+}
+.devices{
+  overflow: auto;
+}
+.devices::-webkit-scrollbar {
+  display: none;
+}

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="43.618" height="30.21" viewBox="0 0 43.618 30.21">
+    <defs>
+        <style>
+            .cls-1{fill:#fff}
+        </style>
+    </defs>
+    <g id="truck" transform="translate(-86.976 -427.519)">
+        <circle id="Ellipse_212" cx="5" cy="5" r="5" class="cls-1" data-name="Ellipse 212" transform="translate(92.976 447.729)"/>
+        <ellipse id="Ellipse_213" cx="4.5" cy="5" class="cls-1" data-name="Ellipse 213" rx="4.5" ry="5" transform="translate(117.976 447.729)"/>
+        <path id="Path_3701" d="M30 65.535h5.452a5.452 5.452 0 0 1 10.9 0h10.9V41H30z" class="cls-1" data-name="Path 3701" transform="translate(56.976 386.519)"/>
+        <path id="Path_3702" d="M58.545 45H56.5v7.5h7.043z" class="cls-1" data-name="Path 3702" transform="translate(66.598 387.971)"/>
+        <path id="Path_3703" d="M57.134 53.178V45H51v19.083h1.363a5.452 5.452 0 0 1 10.9 0h2.726V53.86h-8.174a.681.681 0 0 1-.682-.682z" class="cls-1" data-name="Path 3703" transform="translate(64.6 387.971)"/>
+    </g>
+</svg>

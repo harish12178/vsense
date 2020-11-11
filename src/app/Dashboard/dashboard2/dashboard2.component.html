@@ -1,0 +1,379 @@
+<div class="formmargin">
+    <div class="rectanglebox" fxLayout="row" fxLayoutAlign="start center">
+        <img src="assets/images/server.png" style="width: 3rem;margin-left: 1rem;">
+        <div fxLayout="row" fxLayoutAlign="space-between" style="margin-left: 2rem;width:100%;margin-right: 1.5rem;">
+            <div fxLayout="column" fxLauoutAlign="center" fxLayoutGap="0.5rem" style="justify-content: center;">
+                <span class="truckd">{{equipment.equipmentID}}</span>
+                <span>{{equipment.text}}</span>
+                <!-- <span style="color: #000000;opacity: 0.4;font-size: 12px;">name</span> -->
+            </div>
+            <div fxLayout="column" fxLauoutAlign="start" fxLayoutGap="1rem" style="text-align: center;">
+                <span>{{equipment.geoLoc}}</span>
+                <span>{{equipment.plant}}</span>
+                <span>{{equipment.workcenter}}</span>
+            </div>
+            <!-- <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="0.5rem">
+                <span style="text-decoration:underline;font-weight:500;font-size: 13px;">Current Trip</span>
+                <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="1px">
+                    <div fxLayout="row" fxLayoutAlign="start center" class="address">
+                        <img src="assets/images/from location.svg" style="width:18px;margin-right:0.8rem">
+                        <span>{{fadd}}</span>
+                    </div>
+                    <div class="smallvdivider"></div>
+                    <div class="smallvdivider"></div>
+                    <div class="smallvdivider"></div>
+                    <div class="smallvdivider"></div>
+                    <div class="smallvdivider"></div>
+                    <div class="smallvdivider"></div>
+                    <div class="smallvdivider"></div>
+                    <div fxLayout="row" fxLayoutAlign="start center" class="address">
+                        <img src="assets/images/end location.png" style="width:15px;margin-right:0.8rem">
+                        <span>{{tadd}}</span>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="1rem" style="margin-top: 1.2rem;margin-bottom: 0.8rem;">
+        <!-- <div class="filter">
+            <img src="assets/images/filter.svg" style="width: 11px;">
+        </div>
+        <div fxLayout="row" fxLayoutAlign="start start" style="border-radius: 3px;border: solid 1px #4279e5;">
+            <div class="toggle1">
+                <img src="assets/images/list (2).svg" style="width: 15px;">
+            </div>
+            <div class="toggle2">
+                <img src="assets/images/grid (1).svg" style="width: 12px;">
+            </div>
+        </div> -->
+        <div fxLayout="row" fxLayoutAlign="space-evenly center" class="excel">
+            <img src="assets/images/excel.svg" style="width: 18px;">
+            <span style="color: #3e3e3e;font-size:11px;font-weight:500;">Download to Excel</span>
+        </div>
+    </div>
+
+
+    <mat-grid-list cols="4" rowHeight="220px" gutterSize="2.5rem" style="margin-bottom: 2rem;margin-top:1rem">
+        <mat-grid-tile [colspan]="2" [rowspan]="1" class="boxA">
+            <div style="width: 100%;height: 100%;">
+                <div fxLayout="row" fxLayoutAlign="start start" style="margin-top: 1rem;">
+                    <img src="assets/images/alert.svg" style="width: 28px;margin-left: 1.5rem;margin-right: 2rem;">
+                    <div fxLayout="column" fxLayoutAlign="space-between start" class="tit1">
+                        <span>Device Alerts</span>
+                        <div class="underline1"></div>
+                    </div>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="space-between start" [ngStyle]="{'margin-right':alert_count[4]==undefined ? '15%' : 'none'}">
+                    <div style="width: 15rem;height: 11rem;transform: rotate(-90deg);" fxLayout="column" fxLayoutAlign="start center">
+                        <div *ngIf="data[0]" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="0.5rem"
+                             class="p_bars">
+                            <span class="p-indi">{{data[0].alert_count}}</span>
+                            <mat-progress-bar mode="determinate" value="data[0].alert_count" class="bluebar"></mat-progress-bar>
+                        </div>
+                        <div *ngIf="data[1]" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="0.5rem"
+                             class="p_bars">
+                            <span class="p-indi">{{data[1].alert_count}}</span>
+                            <mat-progress-bar mode="determinate" value="data[1].alert_count" class="orangebar"></mat-progress-bar>
+                        </div>
+                        <div *ngIf="data[2]" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="0.5rem"
+                             class="p_bars">
+                            <span class="p-indi">{{data[2].alert_count}}</span>
+                            <mat-progress-bar mode="determinate" value="data[2].alert_count" class="yellowbar"></mat-progress-bar>
+                        </div>
+                        <div *ngIf="data[3]" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="0.5rem"
+                             class="p_bars">
+                            <span class="p-indi">{{data[3].alert_count}}</span>
+                            <mat-progress-bar mode="determinate" value="data[3].alert_count" class="greenbar"></mat-progress-bar>
+                        </div>
+                        <div *ngIf="data[4]" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="0.5rem"
+                        class="p_bars">
+                            <span class="p-indi">{{data[4].alert_count}}</span>
+                            <mat-progress-bar mode="determinate" value="data[4].alert_count" class="pingbar"></mat-progress-bar>
+                        </div>
+                    </div>
+                    <div class="vdevider"></div>
+                    <div fxLayout="column" fxLayoutAlign="start start">
+                        <div *ngIf="data[0]" fxLayout="row" fxLayoutAlign="start center" style="margin-top:2rem;">
+                            <div class="circle_blue"></div>
+                            <span class="legendtxt">{{data[0].device_Assign_Param.activityGraphTitle}}</span>
+                        </div>
+                        <div *ngIf="data[1]" fxLayout="row" fxLayoutAlign="start center" style="margin-top:0.9rem;">
+                            <div class="circle_orange"></div>
+                            <span class="legendtxt">{{data[1].device_Assign_Param.activityGraphTitle}}</span>
+                        </div>
+                        <div *ngIf="data[2]" fxLayout="row" fxLayoutAlign="start center" style="margin-top:0.9rem;">
+                            <div class="circle_yellow"></div>
+                            <span class="legendtxt">{{data[2].device_Assign_Param.activityGraphTitle}}</span>
+                        </div>
+                        <div *ngIf="data[3]" fxLayout="row" fxLayoutAlign="start center" style="margin-top:0.9rem;">
+                            <div class="circle_green"></div>
+                            <span class="legendtxt">{{data[3].device_Assign_Param.activityGraphTitle}}</span>
+                        </div>
+
+                    </div>
+                    <div *ngIf="data[4]" fxLayout="row" fxLayoutAlign="start center" style="margin-top:2rem;    margin-left: -22px;
+                    margin-right: 3%;">
+                        <div class="circle_pink"></div>
+                        <span class="legendtxt">{{data[4].device_Assign_Param.activityGraphTitle}}</span>
+                    </div>
+                </div>
+            </div> 
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="1" class="boxA">
+            <div style="width: 100%;height: 100%;" class="devices">
+                <div fxLayout="row" fxLayoutAlign="start start" style="margin-top: 1rem;">
+                    <img src="assets/images/truck (1).svg" style="width: 35px;margin-left: 1.5rem;margin-right: 2rem;">
+                    <div fxLayout="column" fxLayoutAlign="space-between start" class="tit1">
+                        <span>Device Details</span>
+                        <div class="underline1"></div>
+                    </div>
+                </div>
+                <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="1rem" style="margin-top: 1rem;">
+                    <span style="font-size: 18px;
+                    letter-spacing: 1.08px;
+                    color: rgb(74, 74, 74);
+                    font-weight: bold;">{{device.deviceID}}</span>
+                    <span style="color: rgb(74, 74, 74);
+                    font-size: 14px;
+                    font-weight: 500;
+                    opacity: 0.8;">{{device.name}}</span>
+                    <span style="margin-bottom: 1rem;
+                    color: rgb(74, 74, 74);
+                    font-size: 14px;
+                    font-weight: 500;
+                    opacity: 0.8;">{{device.purpose}}</span>
+                    <span style="color: rgb(74, 74, 74);
+                    font-size: 14px;
+                    font-weight: 600;
+                    opacity: 0.8;">{{device.puttoUse | date:'dd/MM/yyyy'}}</span>
+                </div>
+            </div>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="2" class="boxA">
+            <div style="width: 100%;height: 100%;">
+                <div fxLayout="row" fxLayoutAlign="start start" style="margin-top: 1rem;">
+                    <img src="assets/images/engine.svg" style="width: 30px;margin-left: 1.5rem;margin-right: 2rem;">
+                    <div fxLayout="column" fxLayoutAlign="space-between start" class="tit1">
+                        <span>Device Status</span>
+                        <div class="underline1"></div>
+                    </div>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="space-between start">
+                    <div fxLayout="column" fxLayoutAlign="start start">
+                        <!-- <span class="gheading">Param INFO</span>
+                        <div class="underlineg"></div> -->
+                        <div fxLayout="row" fxLayoutAlign="start center" style="margin-top: 3rem;">
+                            <img src="assets/images/change-car-oil.svg"
+                                style="width:21px;margin-left: 1.5rem;margin-right: 1rem;">
+                            <span class="gsub">Software Version</span>
+                        </div>
+                        <span class="good">{{device.softwareVersion}}</span>
+                        <div fxLayout="row" fxLayoutAlign="start end" style="margin-top: 2rem;">
+                            <img src="assets/images/spark plug.svg"
+                                style="width:7px;margin-left: 30px;margin-right: 24px;">
+                            <span class="gsub">Vcc</span>
+                        </div>
+                        <span class="good">{{device.vcc}}V</span>
+
+                        <!-- <span class="gheading" style="margin-top: 2.5rem;">Device INFO</span>
+                        <div class="underlineg"></div> -->
+                        <div fxLayout="row" fxLayoutAlign="start center"  style="margin-top: 3rem;">
+                            <img src="assets/images/noun_Battery_1881019.svg"
+                                style="width:14px;margin-left:26px;margin-right: 21px;">
+                            <span class="gsub">Battery Status</span>
+                        </div>
+                        <span class="good">Good</span>
+                        <div fxLayout="row" fxLayoutAlign="start center" style="margin-top: 2rem;">
+                            <img src="assets/images/abs warning light.svg"
+                                style="width:14px;margin-left:26px;margin-right: 21px;">
+                            <span class="gsub">Device Health</span>
+                        </div>
+                        <span class="good">Good</span>
+                    </div>
+                    <div style="width: 100%;margin-right: -50%;" fxLayout="row" fxLayoutAlign="start start">
+                        <div class="temp_container">
+                            <mwl-gauge class="temp" [max]="120" [value]="90" [animated]="true" [animationDuration]="1"
+                                [dialStartAngle]="-120" [dialEndAngle]="120">
+                            </mwl-gauge>
+                        </div>
+                        <div class="axis_container">
+                            <mwl-gauge class="axis" [max]="100" [value]="device.battery" [animated]="true"
+                                [animationDuration]="1" [dialStartAngle]="-120" [dialEndAngle]="120">
+                            </mwl-gauge>
+                        </div>
+                        <div fxLayout="column" fxLayoutAlign="center start" style="width: 94px;margin-top: 11.5rem;
+                        margin-left: 1.5rem;
+                        margin-right: -10rem;">
+                            <div fxLayout="row" fxLayoutAlign="start start">
+                                <span style="font-size: 24px;
+                            font-weight: bold;
+                            color: #4a4a4a;
+                            letter-spacing: 1.56px;">{{device.battery}}</span>
+                                <span style="letter-spacing: 0.78px;
+                            color: #a2a2a2;
+                            font-weight: 500;
+                            font-size: 12px;">%</span>
+                            </div>
+                            <div fxLayout="row" fxLayoutAlign="start center" style="margin-top: 6px;">
+                                <img src="assets/images/noun_Battery_1881019.svg" style="width: 9px;">
+                                <div fxLayout="column" fxLayoutAlign="start start">
+                                    <span style="font-size: 7px;
+                            color: #a2a2a2;
+                            letter-spacing: 0.27px;
+                            margin-left: 8px;">DEVICE</span>
+                                    <span style="font-size: 7px;
+                            color: #a2a2a2;
+                            letter-spacing: 0.27px;
+                            margin-left: 8px;
+                            margin-top: -9px;">BATTERY</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="1" class="boxA" *ngFor="let item of data;index as i">
+            <div style="width: 100%;height: 100%;" *ngIf="i%4==0">
+                <div fxLayout="row" fxLayoutAlign="start start" style="margin-top: 1rem;">
+                    <img src="assets/images/fuel (1).svg" style="width: 24px;margin-left: 1.5rem;margin-right: 2rem;">
+                    <div fxLayout="column" fxLayoutAlign="space-between start" class="tit1">
+                        <span>{{item.device_Assign_Param.activityGraphTitle}}</span>
+                        <div class="underline1"></div>
+                    </div>
+                </div>
+                <div style="display:flex;justify-content:center">
+                    <div class="fuelcontainer">
+                        <div style="display: block" class="fuelchart">
+                            <mwl-gauge class="temperature" [max]="item.maxValue" [dialStartAngle]="-90"
+                                [dialEndAngle]="-90.001" [value]="item.value" [showValue]="false" [animated]="true"
+                                [animationDuration]="1">
+                            </mwl-gauge>
+                        </div>
+                        <div class="border_circle" fxLayout="column" fxLayoutAlign="center center">
+                            <!-- <img src="assets/images/fuel2.svg" style="width:11px;margin-bottom: 7px;"> -->
+                            <span style="color: #485865;letter-spacing: 0.81px;font-weight: 500;font-size:20px;margin-top: 16px;">{{item.value | number:'2.0-1'}}</span>
+                            <span style="   color: #ee4057;
+                            letter-spacing: 1.1px;
+                            font-weight: 500;
+                            font-size: 10px;">{{item.device_Assign_Param.unit}}</span>
+                        </div>
+                        <div class="dash_border"></div>
+                    </div>
+                </div>
+            </div>
+            <div style="width: 100%;height: 100%;" *ngIf="i%4==1">
+                <div fxLayout="row" fxLayoutAlign="start start" style="margin-top: 1rem;">
+                    <img src="assets/images/speedometer.svg"
+                        style="width: 27px;margin-left: 1.5rem;margin-right: 2rem;">
+                    <div fxLayout="column" fxLayoutAlign="space-between start" class="tit1">
+                        <span>{{item.device_Assign_Param.activityGraphTitle}}</span>
+                        <div class="underline2"></div>
+                    </div>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="center start">
+                    <div>
+                        <div style="display:flex;justify-content:center;width:270px">
+                            <mwl-gauge class="rpm1" [max]="item.maxValue" [value]="item.value"
+                                [animated]="true" [showValue]="false" [animationDuration]="1">
+                            </mwl-gauge>
+                        </div>
+                        <div>
+                            <div class="border_circle_2" fxLayout="column" fxLayoutAlign="center center">
+                                <span style="margin-top:16px;color: #485865;letter-spacing: 0.81px;font-weight: 500;font-size:20px;">{{item.value | number:'2.0-1'}}</span>
+                                <span style="    color: #ee4057;
+                            letter-spacing: 1.1px;
+                            font-weight: 500;
+                            font-size: 10px;
+                            ">{{item.device_Assign_Param.unit}}</span>
+                            </div>
+                            <div class="smalltxt" style="margin-left: 101px;
+                        margin-top: -16px;">0</div>
+                            <div class="smalltxt" style="    margin-top: -80px;
+                        margin-left: 91px;">40</div>
+                            <div class="smalltxt" style="    margin-left: 172px;
+                        margin-top: -20px;">60</div>
+                            <div class="smalltxt" style="margin-left: 161px;
+                        margin-top: 40px;">100</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="width: 100%;height: 100%;" *ngIf="i%4==2">
+                <div fxLayout="row" fxLayoutAlign="start start" style="margin-top: 1rem;">
+                    <img src="assets/images/speedometer (1).svg"
+                        style="width: 27px;margin-left: 1.5rem;margin-right: 2rem;">
+                    <div fxLayout="column" fxLayoutAlign="space-between start" class="tit1">
+                        <span>{{item.device_Assign_Param.activityGraphTitle}}</span>
+                        <div class="underline2"></div>
+                    </div>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="center start">
+                    <div>
+                        <div style="display:flex;justify-content:center;width:270px">
+                            <mwl-gauge class="rpm" [max]="item.maxValue" [value]="item.value"
+                                [animated]="true" [showValue]="false" [animationDuration]="1">
+                            </mwl-gauge>
+                        </div>
+                        <div>
+                            <div class="border_circle_2" fxLayout="column" fxLayoutAlign="center center">
+                                <span style="margin-top:16px;color: #485865;letter-spacing: 0.81px;font-weight: 500;font-size:20px;">{{item.value | number:'2.0-1'}}</span>
+                                <span style="    color: #ee4057;
+                            letter-spacing: 1.1px;
+                            font-weight: 500;
+                            font-size: 10px;
+                            ">{{item.device_Assign_Param.unit}}</span>
+                            </div>
+                            <div class="smalltxt" style="margin-left: 101px;
+                        margin-top: -16px;">0</div>
+                            <div class="smalltxt" style="    margin-top: -80px;
+                        margin-left: 91px;">40</div>
+                            <div class="smalltxt" style="    margin-left: 172px;
+                        margin-top: -20px;">60</div>
+                            <div class="smalltxt" style="margin-left: 161px;
+                        margin-top: 40px;">100</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="width: 100%;height: 100%;" *ngIf="i%4==3">
+                <div fxLayout="row" fxLayoutAlign="start start" style="margin-top: 1rem;">
+                    <img src="assets/images/speedometer.svg"
+                        style="width: 27px;margin-left: 1.5rem;margin-right: 2rem;">
+                    <div fxLayout="column" fxLayoutAlign="space-between start" class="tit1">
+                        <span>{{item.device_Assign_Param.activityGraphTitle}}</span>
+                        <div class="underline2"></div>
+                    </div>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="center start">
+                    <div>
+                        <div style="display:flex;justify-content:center;width:270px">
+                            <mwl-gauge class="rpm1" [max]="item.maxValue" [value]="item.value"
+                                [animated]="true" [showValue]="false" [animationDuration]="1">
+                            </mwl-gauge>
+                        </div>
+                        <div>
+                            <div class="border_circle_2" fxLayout="column" fxLayoutAlign="center center">
+                                <span style="margin-top:16px;color: #485865;letter-spacing: 0.81px;font-weight: 500;font-size:20px;">{{item.value | number:'2.0-1'}}</span>
+                                <span style="    color: #ee4057;
+                            letter-spacing: 1.1px;
+                            font-weight: 500;
+                            font-size: 10px;
+                            ">{{item.device_Assign_Param.unit}}</span>
+                            </div>
+                            <div class="smalltxt" style="margin-left: 101px;
+                        margin-top: -16px;">0</div>
+                            <div class="smalltxt" style="    margin-top: -80px;
+                        margin-left: 91px;">40</div>
+                            <div class="smalltxt" style="    margin-left: 172px;
+                        margin-top: -20px;">60</div>
+                            <div class="smalltxt" style="margin-left: 161px;
+                        margin-top: 40px;">100</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </mat-grid-tile>
+    </mat-grid-list>
+
+</div>

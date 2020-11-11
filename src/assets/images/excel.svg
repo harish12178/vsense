@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" id="excel" width="32.024" height="30.024" viewBox="0 0 32.024 30.024">
+    <defs>
+        <style>
+            .cls-2{fill:#388e3c}
+        </style>
+    </defs>
+    <path id="Path_671" fill="#eceff1" d="M271.011 102.027H257a1 1 0 0 1-1-1V81.012a1 1 0 0 1 1-1h14.01a1 1 0 0 1 1 1v20.015a1 1 0 0 1-.999 1z" transform="translate(-239.988 -76.007)"/>
+    <g id="Group_1209" transform="translate(16.012 8.007)">
+        <path id="Path_672" d="M261 146.012h-4a1 1 0 0 1 0-2h4a1 1 0 0 1 0 2z" class="cls-2" transform="translate(-256 -144.011)"/>
+        <path id="Path_673" d="M261 210.012h-4a1 1 0 0 1 0-2h4a1 1 0 0 1 0 2z" class="cls-2" transform="translate(-256 -204.008)"/>
+        <path id="Path_674" d="M261 274.012h-4a1 1 0 0 1 0-2h4a1 1 0 0 1 0 2z" class="cls-2" transform="translate(-256 -264.005)"/>
+        <path id="Path_675" d="M261 338.012h-4a1 1 0 0 1 0-2h4a1 1 0 0 1 0 2z" class="cls-2" transform="translate(-256 -324.002)"/>
+        <path id="Path_676" d="M387 146.012h-2a1 1 0 0 1 0-2h2a1 1 0 0 1 0 2z" class="cls-2" transform="translate(-375.994 -144.011)"/>
+        <path id="Path_677" d="M387 210.012h-2a1 1 0 0 1 0-2h2a1 1 0 0 1 0 2z" class="cls-2" transform="translate(-375.994 -204.008)"/>
+        <path id="Path_678" d="M387 274.012h-2a1 1 0 0 1 0-2h2a1 1 0 0 1 0 2z" class="cls-2" transform="translate(-375.994 -264.005)"/>
+        <path id="Path_679" d="M387 338.012h-2a1 1 0 0 1 0-2h2a1 1 0 0 1 0 2z" class="cls-2" transform="translate(-375.994 -324.002)"/>
+    </g>
+    <path id="Path_680" fill="#2e7d32" d="M17.651 16.221a.983.983 0 0 0-.823-.212l-16.012 3a1 1 0 0 0-.816.985V42.01a1 1 0 0 0 .817.983l16.012 3a.941.941 0 0 0 .184.018 1 1 0 0 0 1-1V16.992a1 1 0 0 0-.362-.771z" transform="translate(0 -15.989)"/>
+    <path id="Path_681" fill="#fafafa" d="M88.743 169.375l-3.164-3.617 3.2-4.115a1 1 0 0 0-1.579-1.231l-2.964 3.811-2.5-2.854a1 1 0 0 0-1.505 1.317l2.752 3.146-2.79 3.587a1 1 0 0 0 1.581 1.229l2.552-3.282 2.91 3.324a1 1 0 1 0 1.505-1.315z" transform="translate(-74.981 -151.018)"/>
+</svg>

@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="20" height="30" viewBox="0 0 20 30">
+    <defs>
+        <style>
+            .cls-1,.cls-2{fill:#8f8f8f;stroke:#8f8f8f}.cls-2{fill:#fff;stroke-width:2px}.cls-3{stroke:none}.cls-4{fill:none}
+        </style>
+    </defs>
+    <g id="filter" transform="translate(-18 -8.802)">
+        <g id="Rectangle_1210" class="cls-1" transform="translate(21 8.802)">
+            <rect width="3" height="18" class="cls-3" rx="1"/>
+            <rect width="2" height="17" x=".5" y=".5" class="cls-4" rx=".5"/>
+        </g>
+        <g id="Rectangle_1211" class="cls-1" transform="translate(32 20.802)">
+            <rect width="3" height="18" class="cls-3" rx="1"/>
+            <rect width="2" height="17" x=".5" y=".5" class="cls-4" rx=".5"/>
+        </g>
+        <g id="Ellipse_236" class="cls-2" transform="translate(29 8.802)">
+            <circle cx="4.5" cy="4.5" r="4.5" class="cls-3"/>
+            <circle cx="4.5" cy="4.5" r="3.5" class="cls-4"/>
+        </g>
+        <g id="Ellipse_237" class="cls-2" transform="translate(18 29.802)">
+            <circle cx="4.5" cy="4.5" r="4.5" class="cls-3"/>
+            <circle cx="4.5" cy="4.5" r="3.5" class="cls-4"/>
+        </g>
+    </g>
+</svg>

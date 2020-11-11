@@ -1,0 +1,132 @@
+/* You can add global styles to this file, and also import other style files */
+@import './app/theme';
+@include mat-core();
+@include angular-material-theme($app-theme);
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+a {
+    text-decoration-color: mat-color($app-primary);
+    color: mat-color($app-primary);
+  }
+  mwl-gauge.rpm {
+    margin-top: 22px;
+    width: 140px;
+    height: 140px;
+    display: block;
+  }
+  mwl-gauge.rpm > .gauge > .dial {
+    stroke: #eee;
+    stroke-dasharray: 1.2px;
+    stroke-width: 5;
+  }
+  mwl-gauge.rpm > .gauge > .value {
+    stroke: #1f76d3;
+    stroke-dasharray: 1.2px;
+    stroke-width: 5;
+  }
+  mwl-gauge.rpm > .gauge > .value-text {
+    fill: #485865;
+    font-weight: 500;
+    font-family: inherit;
+    font-size: 14px;
+    opacity: 0.99;
+  }
+
+  mwl-gauge.rpm1 {
+    margin-top: 22px;
+    width: 140px;
+    height: 140px;
+    display: block;
+  }
+  mwl-gauge.rpm1 > .gauge > .dial {
+    stroke: #eee;
+    stroke-width: 5;
+  }
+  mwl-gauge.rpm1 > .gauge > .value {
+    stroke: #1f76d3;
+    stroke-width: 5;
+  }
+  mwl-gauge.rpm1 > .gauge > .value-text {
+    fill: #485865;
+    font-weight: 500;
+    font-family: inherit;
+    font-size: 14px;
+    opacity: 0.99;
+  }
+
+  mwl-gauge.temperature {
+    margin-top: 22px;
+    width: 110px;
+    height: 110px;
+    display: block;
+  }
+  mwl-gauge.temperature > .gauge > .dial {
+    stroke: #eee;
+    stroke-width: 5;
+  }
+  mwl-gauge.temperature > .gauge > .value {
+    stroke: #1f76d3;
+    stroke-width: 5;
+  }
+  mwl-gauge.temperature > .gauge > .value-text {
+    fill: #485865;
+    font-weight: 500;
+    font-family: inherit;
+    font-size: 14px;
+    opacity: 0.99;
+  }
+
+  mwl-gauge.temp {
+    width: 400px;
+    height: 400px;
+    display: block;
+  }
+  mwl-gauge.temp > .gauge > .dial {
+    stroke: #c24e5a;
+    stroke-width: 5;
+  }
+  mwl-gauge.temp > .gauge > .value {
+    stroke: #1f76d3;
+    stroke-width: 5;
+  }
+  mwl-gauge.temp > .gauge > .value-text {
+    fill: transparent;
+  }
+  mwl-gauge.axis {
+    margin-top: 22px;
+    width: 350px;
+    height: 350px;
+    display: block;
+  }
+  mwl-gauge.axis > .gauge > .dial {
+    stroke: #e4e4e4;
+    stroke-dasharray: 0.6px;
+    stroke-width: 2;
+  }
+  mwl-gauge.axis > .gauge > .value {
+    stroke: #1f76d3;
+    stroke-dasharray: 0.6px;
+    stroke-width: 2;
+  }
+  mwl-gauge.axis > .gauge > .value-text {
+    fill: transparent;
+  }
+  .success {
+    background-color: #26b329 !important;
+  }
+  
+  .danger {
+    background-color: #d6201d !important;
+  }
+  
+  .warning {
+    background-color: #ee9a2c;
+  }
+  
+  .info {
+    background-color:#1992ce;
+  }
+  
+  .test {
+    background: #1abc9c !important;
+  }
