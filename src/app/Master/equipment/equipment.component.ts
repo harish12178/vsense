@@ -96,7 +96,16 @@ export class EquipmentComponent implements OnInit {
     this.reset_form();
   }
   handle_create(){
-    this.mform.controls.isEnabled.setValue(true);
+    let d=this.mform.value;
+    let isexist=false;
+    for(var i in this.equipments){
+      if(this.equipments[i].equipmentID==d.equipmentID){
+        isexist=true;
+        break;
+      }
+    }
+    if(!isexist){
+      this.mform.controls.isEnabled.setValue(true);
     this.mform.controls.createdOn.setValue(new Date());
     this.service.createequipment(this.mform.value).subscribe((data:any[])=>{
       // console.log(data);
@@ -107,6 +116,8 @@ export class EquipmentComponent implements OnInit {
     (error)=>{
       this.notification.success("something went wrong");
     })
+    }
+    this.notification.success("equipment already exists");
   }
 
 }

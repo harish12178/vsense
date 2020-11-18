@@ -92,11 +92,20 @@ export class DeviceComponent implements OnInit {
     this.reset_form();
   }
   handle_create(){
-    this.mform.controls.isEnabled.setValue(true);
+    let d=this.mform.value;
+    let isexist=false;
+    for(var i in this.devices){
+      if(this.devices[i].deviceID==d.deviceID){
+        isexist=true;
+        break;
+      }
+    }
+    if(!isexist){
+      this.mform.controls.isEnabled.setValue(true);
     this.mform.controls.createdOn.setValue(new Date());
-    console.log(this.mform.value);
+    // console.log(this.mform.value);
     this.service.createdevice(this.mform.value).subscribe((data:any[])=>{
-      console.log(data);
+      // console.log(data);
       this.notification.success("Created Successfully");
       this.getdevices();
       this.isCreate=false;
@@ -104,6 +113,10 @@ export class DeviceComponent implements OnInit {
     (error)=>{
       this.notification.success("Something went wrong");
     })
+    }
+    else{
+      this.notification.success("device already exists");
+    }
   }
   reset_form(){
     this.mform.setValue({

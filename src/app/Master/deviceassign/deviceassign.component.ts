@@ -63,12 +63,12 @@ export class DeviceassignComponent implements OnInit {
   getdeviceassigns(){
     this.service.getalldeviceassigns().subscribe((data: any[])=>{
       this.deviceassignments=data;
-      this.getselected(this.deviceassignments[0].deviceID);
+      this.getselected(this.deviceassignments[0].assignmentID);
     }) 
   }
   getselected(name:string){
     for(var i in this.deviceassignments){
-      if(this.deviceassignments[i].deviceID==name){
+      if(this.deviceassignments[i].assignmentID==name){
         this.isCreate=false;
         this.mform.controls.assignmentID.setValue(this.deviceassignments[i].assignmentID);
         this.mform.controls.deviceID.setValue(this.deviceassignments[i].deviceID);

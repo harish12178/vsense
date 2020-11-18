@@ -116,7 +116,16 @@ export class DeviceparamComponent implements OnInit {
     this.reset_form();
   }
   handle_create(){
-    this.mform.controls.isEnabled.setValue(true);
+    let d=this.mform.value;
+    let isexist=false;
+    for(var i in this.deviceparams){
+      if(this.deviceparams[i].deviceID==d.deviceID && this.deviceparams[i].paramID==d.paramID){
+        isexist=true;
+        break;
+      }
+    }
+    if(!isexist){
+      this.mform.controls.isEnabled.setValue(true);
     this.mform.controls.createdOn.setValue(new Date());
     this.service.createdeviceparam(this.mform.value).subscribe((data:any[])=>{
       // console.log(data);
@@ -127,5 +136,7 @@ export class DeviceparamComponent implements OnInit {
     (error)=>{
       this.notification.success("something went wrong");
     })
+    }
+    this.notification.success("parameter already exists for the device");
   }
 }

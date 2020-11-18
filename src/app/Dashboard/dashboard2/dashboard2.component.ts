@@ -8,7 +8,7 @@ import { VsenseapiService } from 'src/app/Services/vsenseapi.service';
   styleUrls: ['./dashboard2.component.css']
 })
 export class Dashboard2Component implements OnInit {
-  devices = []; temperature=30;device;
+  deviceparams = []; temperature=30;device;
   equipment; equipmentid;
   subscription:Subscription
   data = [];
@@ -17,22 +17,30 @@ export class Dashboard2Component implements OnInit {
   constructor(public service: VsenseapiService) {}
 
   datapuller(){
-    for (var i in this.devices) {
-      this.service.getdevicelog(this.devices[i]).subscribe(res => {
-        this.dummy=res;
-        for(var j in this.devices){
-          if(this.data[j].deviceID==this.dummy.deviceID){
-            this.dummy.alert_count=this.data[j].alert_count;
-            if(this.data[j].logID!=this.dummy.logID && this.dummy.value>this.dummy.maxValue){ 
-                this.dummy.alert_count+=1;
+    for (var i in this.deviceparams) {
+      if(this.deviceparams[i].assignmentID==localStorage.getItem("assignment") && this.deviceparams[i].device_assign.deviceID==this.device.deviceID){
+        this.service.getdevicelog(this.deviceparams[i].device_assign.deviceID,this.deviceparams[i].pramID).subscribe(res => {
+          this.dummy=res;
+          this.service.getdeviceassignparam(localStorage.getItem("assignment"),this.dummy.pramID).subscribe(x=>{
+            this.dummy.device_Assign_Param=x;
+          
+          for(var j in this.deviceparams){
+            if(this.data[j].device_Assign_Param.assignmentID==this.dummy.device_Assign_Param.assignmentID && this.data[j].pramID==this.dummy.pramID){
+              this.dummy.alert_count=this.data[j].alert_count;
+              
+              if(this.data[j].logID!=this.dummy.logID && this.dummy.value>this.dummy.maxValue){ 
+                  this.dummy.alert_count+=1;
+              }
+              this.data[j]=this.dummy;
+              //console.log(this.data[j].alert_count);
+              break;
             }
-            this.data[j]=this.dummy;
-            //console.log(this.data[j].alert_count);
-            break;
           }
-        }
-        //console.log(this.dummy);
-      });
+        });
+          //console.log(this.dummy);
+        });
+      }
+      
     }
   }
   ngOnInit(): void {
@@ -60,18 +68,24 @@ export class Dashboard2Component implements OnInit {
         }
       }
       // console.log(this.equipmentid);
-      this.service.getdevicesbyequipment(this.equipmentid).subscribe(res => {
-        this.devices = res;
-        for (var i in this.devices) {
-          this.service.getdevicelog(this.devices[i]).subscribe(res => {
-            this.dummy1=res;
-            this.dummy1.alert_count=0;
-            if(this.dummy1.value>this.dummy1.maxValue){
-              this.dummy1.alert_count+=1;
-            }
-            this.data.push(this.dummy1);
-            console.log(this.dummy1.alert_count);
-          });
+      this.service.getalldeviceassignparams().subscribe(res => {
+        this.deviceparams = res;
+        for (var i in this.deviceparams) {
+          if(this.deviceparams[i].assignmentID==localStorage.getItem("assignment") && this.deviceparams[i].device_assign.deviceID==this.device.deviceID){
+            this.service.getdevicelog(this.deviceparams[i].device_assign.deviceID,this.deviceparams[i].pramID).subscribe(res => {
+              this.dummy1=res;
+              this.service.getdeviceassignparam(localStorage.getItem("assignment"),this.dummy1.pramID).subscribe(x=>{
+                this.dummy1.device_Assign_Param=x;
+              })
+              this.dummy1.alert_count=0;
+              if(this.dummy1.value>this.dummy1.maxValue){
+                this.dummy1.alert_count+=1;
+              }
+              this.data.push(this.dummy1);
+              console.log(this.dummy1);
+            });
+          }
+          
         }
       })
     })

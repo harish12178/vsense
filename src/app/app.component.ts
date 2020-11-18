@@ -62,7 +62,7 @@ export class AppComponent implements AfterViewInit,OnInit {
           route: "masters/deviceassign"
         },
         {
-          displayName: "DPAssign",
+          displayName: "PAssign",
           iconName: "",
           route: "masters/deviceassignparam"
         }

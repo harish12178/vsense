@@ -9,7 +9,7 @@ import { Subject } from 'rxjs/internal/Subject';
 })
 export class VsenseapiService {
   private server_address = "http://192.168.0.28:7051/vsenseapi";
- // private server_address = "http://localhost:5501/vsenseapi";
+ //private server_address = "http://localhost:5501/vsenseapi";
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -27,8 +27,8 @@ export class VsenseapiService {
        this.emitChangeSource.next(change);
    }
 
-  getdevicelog(id:string): Observable<any[]> {
-    return this.httpClient.get<any[]>(this.server_address+"/DeviceLog/getlog?deviceid="+id)
+  getdevicelog(id:string,pramID:string): Observable<any[]> {
+    return this.httpClient.get<any[]>(this.server_address+"/DeviceLog/getlog?deviceid="+id+"&pramid="+pramID)
     .pipe(
       catchError(this.errorHandler)
     )
@@ -218,8 +218,8 @@ export class VsenseapiService {
       catchError(this.errorHandler)
     )
   }
-  deletedeviceassignparam(id:any):Observable<any[]>{
-    return this.httpClient.delete<any[]>(this.server_address + '/assignment/deletedeviceassignparam?id='+id)
+  deletedeviceassignparam(id:any,assignmentid:any):Observable<any[]>{
+    return this.httpClient.delete<any[]>(this.server_address + '/assignment/deletedeviceassignparam?pramid='+id+'&assignmentid='+assignmentid)
     .pipe(
       catchError(this.errorHandler)
     )
@@ -249,17 +249,14 @@ export class VsenseapiService {
       catchError(this.errorHandler)
     )
   }
+  getdeviceassignparam(assignmentid,pramid):Observable<any[]>{
+    return this.httpClient.get<any[]>(this.server_address+'/assignment/getdeviceassignparam?assignmentid='+assignmentid+'&pramid='+pramid)
+    .pipe(
+      catchError(this.errorHandler)
+    )
+  }
   
-  errorHandler(error:HttpErrorResponse) {
-    let errorMessage = '';
-    if(error.error instanceof ErrorEvent) {
-      // Get client-side error
-      errorMessage = error.error.message;
-    } else {
-      // Get server-side error
-      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
-    }
-    console.log(errorMessage);
-    return throwError(errorMessage);
- }
+  errorHandler(error: HttpErrorResponse): Observable<any[]> {
+    return throwError(error.error instanceof Object ? error.error.Message ? error.error.Message : error.error : error.error || error.message || 'Server Error');
+}
 }

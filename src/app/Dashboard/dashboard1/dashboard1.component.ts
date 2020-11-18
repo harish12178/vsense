@@ -68,7 +68,7 @@ export class Dashboard1Component implements OnInit,OnDestroy {
   public lineChartType = 'line';
   public lineChartPlugins = [];
   array;
-  displayedColumns: string[] = ['equipmentname', 'location', 'equipmentid','device','parameter1','parameter2',"parameter3","parameter4", 'action'];
+  displayedColumns: string[] = ['equipmentname', 'location', 'equipmentid','device','parameter1','parameter2',"parameter3","parameter4",'isenable', 'action'];
   dataSource ;
   constructor(private router: Router,public service:VsenseapiService,private userService: UserService,private notification:NotificationService) { }
   
@@ -152,6 +152,7 @@ export class Dashboard1Component implements OnInit,OnDestroy {
     if(action=="1"){
     localStorage.setItem('equipment',equipment.equipmentID);
     localStorage.setItem('device',equipment.deviceID);
+    localStorage.setItem('assignment',equipment.assignmentID);
     console.log(equipment);
     this.service.emitChange("Device Details");
     this.router.navigate(['/devicedetails']);
@@ -205,19 +206,21 @@ export class Dashboard1Component implements OnInit,OnDestroy {
     let allogs=[];
     this.service.getrecentlogs().subscribe((data: any[])=>{
       allogs=data;
+      //console.log(data);
       for (var i in allogs) {
-        allogs[i].timeDiff=this.getTimeDiff(allogs[i].dateTime);;
+        allogs[i].timeDiff=this.getTimeDiff(allogs[i].device_log.dateTime);
         this.recentlyUpdated.push(allogs[i]);
     }
     //console.log(this.recentlyUpdated);
-    })
+    });
   }
   datapuller(){
     let allogs=[];
     this.service.getrecentlogs().subscribe((data: any[])=>{
       allogs=data;
+      
       for (var i in allogs) {
-        allogs[i].timeDiff=this.getTimeDiff(allogs[i].dateTime);;
+        allogs[i].timeDiff=this.getTimeDiff(allogs[i].device_log.dateTime);;
         this.recentlyUpdated[i]=(allogs[i]);
     }
     //console.log(this.recentlyUpdated);
@@ -233,7 +236,7 @@ export class Dashboard1Component implements OnInit,OnDestroy {
     this.getactivedevices();
     this.getalldeviceassigns();
     this.getResentlyUpdated();
-    this.subscription = interval(60000).subscribe((func => {
+    this.subscription = interval(30000).subscribe((func => {
       this.datapuller();
     }))
   }

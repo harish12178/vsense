@@ -45,13 +45,13 @@
           <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="3rem" style="width: 100%;color: #262626;">
             <div fxLayout="row" fxLayoutAlign="start center">
               <div class="locbox">
-                <span>{{item.device_Assign_Param.device_assign.locID}}</span>
+                <span>{{item.device_assign.locID}}</span>
               </div>
               <div fxLayout="column" fxLayoutAlign="start start">
                 <span style="font-size: 14px;
-                font-weight: 500;">{{item.deviceID}}</span>
+                font-weight: 500;">{{item.device_log.deviceID}}</span>
                 <span style="    font-size: 11px;
-                opacity: 0.6;">{{item.device_Assign_Param.device_assign.location.lcoationText}}</span>
+                opacity: 0.6;">{{item.device_assign.location.lcoationText}}</span>
               </div>
             </div>
             <div fxLayout="row" fxLayoutAlign="start center">
@@ -156,6 +156,12 @@
       <mat-header-cell *matHeaderCellDef class="headercolor aligncenter"> Vcc</mat-header-cell>
       <mat-cell *matCellDef="let element" class="aligncenter">
         {{element.device.vcc}}
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="isenable">
+      <mat-header-cell *matHeaderCellDef class="headercolor aligncenter"> isEnable</mat-header-cell>
+      <mat-cell *matCellDef="let element" class="aligncenter">
+        {{element.device.isEnabled}}
       </mat-cell>
     </ng-container>
 

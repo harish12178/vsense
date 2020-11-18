@@ -115,7 +115,16 @@ export class LocationComponent implements OnInit {
     this.reset_form();
   }
   handle_create(){
-    this.mform.controls.isEnabled.setValue(true);
+    let d=this.mform.value;
+    let isexist=false;
+    for(var i in this.locs){
+      if(this.locs[i].locationID==d.locationID){
+        isexist=true;
+        break;
+      }
+    }
+    if(!isexist){
+      this.mform.controls.isEnabled.setValue(true);
     this.mform.controls.createdOn.setValue(new Date());
     this.service.createloc(this.mform.value).subscribe((data:any[])=>{
       // console.log(data);
@@ -126,6 +135,8 @@ export class LocationComponent implements OnInit {
     (error)=>{
       this.notification.success("something went wrong");
     })
+    }
+    this.notification.success("location already exists");
   }
     
 }
