@@ -1,0 +1,39 @@
+.formmargin{
+    margin-top: 1rem;
+    padding-left: 2%;
+    padding-right: 2%;
+    margin-bottom: 2rem;
+    
+}
+.tableborder{
+    border: 1px solid #dbd9d9;
+}
+.colheader{
+    background-color:  #2A4579;
+}
+.headercolor{
+    color: white; 
+    height:44px;
+    font-size:12px
+
+}
+.boldtext{
+    font-weight: 500;
+
+}
+.divbox{
+    width: 12px;
+    height: 22px;
+  opacity: 0.6;
+  margin-right: 18px;
+background:#ffffff;
+}
+.alignbox{
+margin-left:-24px;
+margin-right:24px;
+height: 65px;
+}
+.alignhead{
+margin-left:7px;
+margin-right:-7px;
+}

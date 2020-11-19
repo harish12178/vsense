@@ -28,7 +28,7 @@ export class Dashboard2Component implements OnInit {
             if(this.data[j].device_Assign_Param.assignmentID==this.dummy.device_Assign_Param.assignmentID && this.data[j].pramID==this.dummy.pramID){
               this.dummy.alert_count=this.data[j].alert_count;
               
-              if(this.data[j].logID!=this.dummy.logID && this.dummy.value>this.dummy.maxValue){ 
+              if(this.data[j].logID!=this.dummy.logID && (this.dummy.value>this.dummy.maxValue || this.dummy.value<this.dummy.minValue)){ 
                   this.dummy.alert_count+=1;
               }
               this.data[j]=this.dummy;
@@ -78,7 +78,7 @@ export class Dashboard2Component implements OnInit {
                 this.dummy1.device_Assign_Param=x;
               })
               this.dummy1.alert_count=0;
-              if(this.dummy1.value>this.dummy1.maxValue){
+              if(this.dummy1.value>this.dummy1.maxValue || this.dummy1.value<this.dummy1.minValue){
                 this.dummy1.alert_count+=1;
               }
               this.data.push(this.dummy1);

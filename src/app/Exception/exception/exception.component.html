@@ -1,1 +1,40 @@
-<p>exception works!</p>
+<div class="formmargin">
+    <mat-table [dataSource]="dataSource" class="tableborder">
+
+        <ng-container matColumnDef="deviceid">
+          <mat-header-cell *matHeaderCellDef class="headercolor alignhead"> DeviceID</mat-header-cell>
+          <mat-cell *matCellDef="let element;index as i" class="alignbox">
+            <div fxLayout="row" fxLayoutAlign="space-evenly center">
+              <div class="divbox" [ngStyle]="{'background-color':i%2==0 ? '#d87e39' : '#6f52ed'}"></div>
+              <span>{{element.deviceID}}</span>
+            </div>
+          </mat-cell>
+        </ng-container>
+    
+    
+        <ng-container matColumnDef="location">
+          <mat-header-cell *matHeaderCellDef class="headercolor"> Location</mat-header-cell>
+          <mat-cell *matCellDef="let element" 
+          > {{element.device_Assign_Param.device_assign.locID}}</mat-cell>
+        </ng-container>
+    
+    
+        <ng-container matColumnDef="exception">
+          <mat-header-cell *matHeaderCellDef class="headercolor"> Exception</mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            {{element.exception}}
+          </mat-cell>
+        </ng-container>
+    
+        <ng-container matColumnDef="datetime">
+          <mat-header-cell *matHeaderCellDef class="headercolor "> DateTime</mat-header-cell>
+          <mat-cell *matCellDef="let element">
+           {{element.dateTime  | date:'short'}}
+          </mat-cell>
+        </ng-container>
+    
+        
+        <mat-header-row *matHeaderRowDef="displayedColumns" class="colheader"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+</div>

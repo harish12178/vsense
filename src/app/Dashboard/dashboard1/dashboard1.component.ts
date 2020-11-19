@@ -18,12 +18,14 @@ import { NotificationService } from 'src/app/Services/notification.service';
 })
 export class Dashboard1Component implements OnInit,OnDestroy {
   subscription:Subscription;
+  subscription1:Subscription;
   key:string;
   deviceassigns=[];
   chart;active_count;inactive_count;
   data_arr=[];labels=[];
   loading = false;
     users: User[];
+    exception=[];
   recentlyUpdated=[];
   isAll=false;
   public lineChartData: ChartDataSets[] = [
@@ -70,6 +72,8 @@ export class Dashboard1Component implements OnInit,OnDestroy {
   array;
   displayedColumns: string[] = ['equipmentname', 'location', 'equipmentid','device','parameter1','parameter2',"parameter3","parameter4",'isenable', 'action'];
   dataSource ;
+  deviceparamassignments;
+  paramassigns=[];
   constructor(private router: Router,public service:VsenseapiService,private userService: UserService,private notification:NotificationService) { }
   
   getalldeviceassigns(){
@@ -236,6 +240,32 @@ export class Dashboard1Component implements OnInit,OnDestroy {
     this.getactivedevices();
     this.getalldeviceassigns();
     this.getResentlyUpdated();
+
+    let parameter:{
+      assignmentID:number,
+      parameters:any
+    }
+    this.service.getalldeviceassignparams().subscribe((data: any[])=>{
+      this.deviceparamassignments=data;
+      //console.log(data);
+      this.deviceparamassignments.forEach(param => {
+        const params:typeof parameter={
+          assignmentID:param.assignmentID,
+          parameters:[]
+        }
+        for(var i in this.deviceparamassignments){
+          if(param.assignmentID==this.deviceparamassignments[i].assignmentID){
+            params.parameters.push(this.deviceparamassignments[i]);
+          }
+        }
+        this.paramassigns.push(params);
+      });
+      this.exceptionpuller();
+      this.subscription1 = interval(30000).subscribe((func => {
+        this.exceptionpuller();
+      }))
+    })
+    
     this.subscription = interval(30000).subscribe((func => {
       this.datapuller();
     }))
@@ -292,6 +322,35 @@ export class Dashboard1Component implements OnInit,OnDestroy {
   }
   handlefilter(){
     this.dataSource.filter=this.key.trim().toLowerCase();
+  }
+  exceptionpuller(){
+    this.paramassigns.forEach(paramassign => {
+      paramassign.parameters.forEach(param => {
+        this.service.getdevicelog(param.device_assign.deviceID,param.pramID).subscribe((data: any)=>{
+          var log=data;
+          log.device_Assign_Param=param;
+          var flag=false;
+          for(var k in this.exception){
+            if(this.exception[k].logID==log.logID){
+              flag=true;
+              break;
+            }
+          }
+          if(!flag){
+            if(log.value>log.maxValue){
+              log.exception=param.pramID+" exceeded";
+              this.exception.push(log);
+            }
+            else if(log.value<log.minValue){
+              log.exception=param.pramID+" fell behind";
+              this.exception.push(log);
+            }
+          } 
+        })
+      });
+    });
+    console.log(this.exception);
+    localStorage.setItem("exceptions",JSON.stringify(this.exception));
   }
   ngOnDestroy() {
     this.subscription.unsubscribe();
