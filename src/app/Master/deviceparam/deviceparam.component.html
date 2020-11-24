@@ -2,11 +2,11 @@
     <div class="left_side">
         <div fxLayout="column" fxLayoutAlign="start center" style="margin-top: 1rem;">
             <div fxLayout="row" fxLayoutAlign="center center" class="searchbar">
-                <input class="inputfield" placeholder="Search" style="margin-left: 0.5rem;">
+                <input [(ngModel)]="searchText" class="inputfield" placeholder="Search" style="margin-left: 0.5rem;">
                 <img src="assets/images/search.svg" style="width: 15px; margin-right: 0.5rem;">
             </div>
             <mat-selection-list [multiple]="false" [disableRipple]="true" #mdevices style="width: 100%;margin-bottom: 1.5rem;" class="matlist">
-                <mat-list-option class="cards" *ngFor="let item of deviceparams;index as i" [selected]="i==0 && !isCreate" [value]="item.deviceID" (click)="getselected(mdevices.selectedOptions.selected[0]?.value)">
+                <mat-list-option class="cards" *ngFor="let item of deviceparams | filter:searchText;index as i" [selected]="i==0 && !isCreate" [value]="item.deviceID" (click)="getselected(mdevices.selectedOptions.selected[0]?.value)">
                     <div style="width: 100%;height: 100%;padding-left: 3%;" fxLayout="column" fxLayoutAlign="center start">
                         <div fxLayout="row" fxLayoutAlign="space-between center" style="width: 100%;">
                             <span style="font-weight: 500;

@@ -10,22 +10,7 @@ import { FormBuilder,Validators } from '@angular/forms';
 })
 export class LocationComponent implements OnInit {
   locs=[];isCreate=false;
-  loc={
-    locationID:null,
-    lcoationText:null,
-    workCenter:null,
-    plant:null,
-    geo:null,
-    parantLocationID:null
-  };
-  empty={
-    locationID:null,
-    lcoationText:null,
-    workCenter:null,
-    plant:null,
-    geo:null,
-    parantLocationID:null
-  };
+  searchText="";
 
   constructor(public service:VsenseapiService,public notification:NotificationService,private fb:FormBuilder) { }
 
@@ -91,7 +76,6 @@ export class LocationComponent implements OnInit {
       console.log(data);
       this.notification.success("Location Deleted");
       this.getlocs();
-      this.loc=this.empty;
     })
   }
   handle_update(){

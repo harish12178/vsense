@@ -102,7 +102,7 @@ export class AppComponent implements AfterViewInit,OnInit {
     this.authenticationService.logout();
   }
   ngOnInit() {
-    this.bnIdle.startWatching(400).subscribe((res) => {
+    this.bnIdle.startWatching(600).subscribe((res) => {
       if (res) {
         if (this.authenticationService.currentUserValue) {
           console.log('session expired');

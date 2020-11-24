@@ -25,6 +25,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import {MatSelectModule} from '@angular/material/select';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatRippleModule} from '@angular/material/core';
 
 import { MenuListItemComponent } from "./menu-list-item/menu-list-item.component";
 import { NavService } from "./nav.service";
@@ -48,6 +49,9 @@ import { AuthenticationService } from './Services/authentication.service';
 import { BnNgIdleService } from 'bn-ng-idle';
 import { VsenseapiService } from './Services/vsenseapi.service';
 import { NotificationService } from './Services/notification.service';
+import { ExcelService } from './Services/excel.service';
+import { DatePipe } from '@angular/common';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @NgModule({
   declarations: [
@@ -92,9 +96,12 @@ import { NotificationService } from './Services/notification.service';
     MatNativeDateModule,
     MatSnackBarModule,
     MatSelectModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatRippleModule,
+    Ng2SearchPipeModule
   ],
   providers: [NavService,VsenseapiService,NotificationService,UserService,AuthenticationService,BnNgIdleService,
+    ExcelService,DatePipe,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }],
   bootstrap: [AppComponent],

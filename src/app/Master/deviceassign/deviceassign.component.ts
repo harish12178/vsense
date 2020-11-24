@@ -13,6 +13,7 @@ export class DeviceassignComponent implements OnInit {
   equipments=[];
   locations=[];
   deviceassignments=[];
+  searchText="";
 
   constructor(public service:VsenseapiService,public notification:NotificationService,private fb:FormBuilder) { }
 

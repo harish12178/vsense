@@ -26,9 +26,12 @@
     "bn-ng-idle": "^1.0.1",
     "chart.js": "^2.9.4",
     "chartjs-plugin-labels": "^1.1.0",
+    "file-saver": "^2.0.5",
     "ng2-charts": "^2.4.2",
+    "ng2-search-filter": "^0.5.1",
     "rxjs": "~6.5.5",
     "tslib": "^2.0.0",
+    "xlsx": "^0.16.9",
     "zone.js": "~0.10.3"
   },
   "devDependencies": {

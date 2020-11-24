@@ -295,6 +295,15 @@ background-color: antiquewhite;
       align-items: center;
       justify-content: center;
     }
+    .excel{
+        cursor: pointer;
+        height: 34px;
+        width: 3rem;
+        border-radius: 3px;
+        border: solid 1px #c3c3c3;
+        background-color: #ffffff;
+    }
+
     .cellselect{
         height: 32px;
         width:7rem;

@@ -1,5 +1,7 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import {  interval,Subscription  } from 'rxjs';
+import { ExcelService } from 'src/app/Services/excel.service';
 import { VsenseapiService } from 'src/app/Services/vsenseapi.service';
 
 @Component({
@@ -14,7 +16,7 @@ export class Dashboard2Component implements OnInit {
   data = [];
   dummy;dummy1;
   alert_count=[];
-  constructor(public service: VsenseapiService) {}
+  constructor(public service: VsenseapiService,private excelservice:ExcelService,private datepipe:DatePipe) {}
 
   datapuller(){
     for (var i in this.deviceparams) {
@@ -56,12 +58,9 @@ export class Dashboard2Component implements OnInit {
 
   getequipmentdetails(){
     this.service.getallequipments().subscribe(res => {
-      if(localStorage.getItem('equipment')){
+
         this.equipmentid=localStorage.getItem('equipment');
-      }
-      else{
-        this.equipmentid=res[0].equipmentID;
-      }
+
       for (var i in res) {
         if (res[i].equipmentID == this.equipmentid) {
           this.equipment = res[i];
@@ -97,6 +96,27 @@ export class Dashboard2Component implements OnInit {
     this.service.getdevicebyid(id).subscribe(res=>{
       this.device=res;
     })
+  }
+  downloadToExcel(){
+    var array=[];
+    this.data.forEach(x => {
+      let device={
+        deviceID:this.device.deviceID,
+        deviceName:this.device.name,
+        paramName:x.device_Assign_Param.title,
+        equipmentID:this.equipment.equipmentID,
+        equipmentName:this.equipment.text,
+        locationID:x.device_Assign_Param.device_assign.locID,
+        locationName:x.device_Assign_Param.device_assign.location.lcoationText,
+        softwareVersion:this.device.softwareVersion,
+        Vcc:this.device.vcc,
+        Battery:this.device.battery,
+        Healthy:this.device.healthy,
+        PutToUseDate:this.datepipe.transform(this.device.puttoUse, 'dd-MM-yyyy')
+      }
+      array.push(device);
+    });
+    this.excelservice.exportAsExcelFile(array,"deviceDetails");
   }
 
   ngOnDestroy() {

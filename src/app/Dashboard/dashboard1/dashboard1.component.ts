@@ -10,6 +10,8 @@ import { User } from 'src/app/Models/user' ;
 import { UserService } from 'src/app/Services/user.service';
 import { interval, Subscription } from 'rxjs';
 import { NotificationService } from 'src/app/Services/notification.service';
+import { ExcelService } from 'src/app/Services/excel.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-dashboard1',
@@ -27,6 +29,7 @@ export class Dashboard1Component implements OnInit,OnDestroy {
     users: User[];
     exception=[];
   recentlyUpdated=[];
+  allDevices=[];
   isAll=false;
   public lineChartData: ChartDataSets[] = [
     { data: [65, 59, 80, 81, 56, 55, 40], label: 'Active Devices' },
@@ -74,7 +77,13 @@ export class Dashboard1Component implements OnInit,OnDestroy {
   dataSource ;
   deviceparamassignments;
   paramassigns=[];
-  constructor(private router: Router,public service:VsenseapiService,private userService: UserService,private notification:NotificationService) { }
+  constructor(private router: Router,
+    public service:VsenseapiService,
+    private userService: UserService,
+    private notification:NotificationService,
+    private excelservice:ExcelService,
+    private datepipe:DatePipe
+    ) { }
   
   getalldeviceassigns(){
     this.service.getalldeviceassigns().subscribe((data: any[])=>{
@@ -148,7 +157,7 @@ export class Dashboard1Component implements OnInit,OnDestroy {
       this.isAll=false;
     }
     else{
-      this.getalldevices();
+      this.dataSource=new MatTableDataSource(this.allDevices);
       this.isAll=true;
     }
   }
@@ -157,7 +166,7 @@ export class Dashboard1Component implements OnInit,OnDestroy {
     localStorage.setItem('equipment',equipment.equipmentID);
     localStorage.setItem('device',equipment.deviceID);
     localStorage.setItem('assignment',equipment.assignmentID);
-    console.log(equipment);
+    //console.log(equipment);
     this.service.emitChange("Device Details");
     this.router.navigate(['/devicedetails']);
     }
@@ -167,13 +176,13 @@ export class Dashboard1Component implements OnInit,OnDestroy {
       }
       else{
         equipment.device.isEnabled=true;
-      console.log(equipment.device);
+      //console.log(equipment.device);
       this.service.updatedevice(equipment.device).subscribe((data:any[])=>{
         // console.log(data);
         this.notification.update("Device Enabled");
         // this.device=this.empty;
         if(this.isAll){
-          this.getalldevices();
+          this.dataSource=new MatTableDataSource(this.allDevices);
         }
         else{
           this.getinactivedevices();
@@ -188,13 +197,13 @@ export class Dashboard1Component implements OnInit,OnDestroy {
       }
       else{
         equipment.device.isEnabled=false;
-      console.log(equipment.device);
+      //console.log(equipment.device);
       this.service.updatedevice(equipment.device).subscribe((data:any[])=>{
         // console.log(data);
         this.notification.update("Device Disabled");
         // this.device=this.empty;
         if(this.isAll){
-          this.getalldevices();
+          this.dataSource=new MatTableDataSource(this.allDevices);
         }
         else{
           this.getactivedevices();
@@ -237,10 +246,11 @@ export class Dashboard1Component implements OnInit,OnDestroy {
             this.loading = false;
             this.users = users;
         });
-    this.getactivedevices();
     this.getalldeviceassigns();
     this.getResentlyUpdated();
-
+    this.getactivedevices();
+    this.getalldevices();
+    
     let parameter:{
       assignmentID:number,
       parameters:any
@@ -314,7 +324,7 @@ export class Dashboard1Component implements OnInit,OnDestroy {
   }
   getalldevices(){
     this.service.getalldeviceassigns().subscribe((data: any[])=>{
-      this.dataSource=new MatTableDataSource(data);
+      this.allDevices=data;
     })
   }
   handle_devicedetails(equipmentid:string){
@@ -349,8 +359,28 @@ export class Dashboard1Component implements OnInit,OnDestroy {
         })
       });
     });
-    console.log(this.exception);
+    //console.log(this.exception);
     localStorage.setItem("exceptions",JSON.stringify(this.exception));
+  }
+  downloadToExcel(){
+    var array=[];
+    this.allDevices.forEach(x => {
+      let device={
+        deviceID:x.deviceID,
+        deviceName:x.device.name,
+        equipmentID:x.equipmentID,
+        equipmentName:x.equipment.text,
+        locationID:x.locID,
+        locationName:x.location.lcoationText,
+        softwareVersion:x.device.softwareVersion,
+        Vcc:x.device.vcc,
+        Battery:x.device.battery,
+        Healthy:x.device.healthy,
+        PutToUseDate:this.datepipe.transform(x.device.puttoUse, 'dd-MM-yyyy')
+      }
+      array.push(device);
+    });
+    this.excelservice.exportAsExcelFile(array,"deviceTable");
   }
   ngOnDestroy() {
     this.subscription.unsubscribe();

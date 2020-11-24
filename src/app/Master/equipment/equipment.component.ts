@@ -10,6 +10,7 @@ import { FormBuilder,Validators } from '@angular/forms';
 })
 export class EquipmentComponent implements OnInit {
   equipments=[];isCreate=false;
+  searchText="";
 
   constructor(public service:VsenseapiService,public notification:NotificationService,private fb:FormBuilder) { }
 

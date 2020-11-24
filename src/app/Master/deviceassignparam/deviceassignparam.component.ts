@@ -20,6 +20,7 @@ export class DeviceassignparamComponent implements OnInit {
   dataSource=new BehaviorSubject<AbstractControl[]>([]);
   paramAssignForms:FormArray=this.fb.array([]);
   deletearray=[];
+  searchText="";
   constructor(public service:VsenseapiService,public notification:NotificationService,private fb:FormBuilder) { }
 
   addparamassignment(){

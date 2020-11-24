@@ -11,6 +11,7 @@ import { FormBuilder,Validators } from '@angular/forms';
 export class DeviceComponent implements OnInit {
   devices=[];
   isCreate=false;
+  searchText="";
 
   constructor(public service:VsenseapiService,public notification:NotificationService,private fb:FormBuilder) { }
 
