@@ -1,0 +1,52 @@
+
+<div fxLayout="row" fxLayoutAlign="start start" style="height: 89.5%">
+    <div class="left_side">
+        <div fxLayout="column" fxLayoutAlign="start center" style="margin-top: 1rem;">
+            <div fxLayout="row" fxLayoutAlign="center center" class="searchbar">
+                <input [(ngModel)]="searchText" class="inputfield" placeholder="Search" style="margin-left: 0.5rem;">
+                <img src="assets/images/search.svg" style="width: 15px; margin-right: 0.5rem;">
+            </div>
+            <mat-selection-list [multiple]="false" [disableRipple]="true" #mdevices style="width: 100%;margin-bottom: 1.5rem;" class="matlist">
+                <mat-list-option class="cards" *ngFor="let item  of AllMenuApps  | filter: searchText;index as i" [selected]="selectID==item.AppID" [value]="item.AppID" (click)="loadSelectedMenuApp(item)">
+                    <div style="width: 100%;height: 100%;padding-left: 3%;" fxLayout="column" fxLayoutAlign="center start">
+                        <div fxLayout="row" fxLayoutAlign="space-between center" style="width: 100%;">
+                            <span style="font-weight: 500;
+                        letter-spacing: 0.5px;font-size: 15px;">{{item.AppName}}</span>
+                            <span style="font-size: 14px;">{{item.CreatedOn | date:'dd/MM/yyyy'}}</span>
+                        </div>
+                        <!-- <span style="font-size: 13px;
+                        opacity: 0.6;">{{item.text}}</span> -->
+                    </div>
+                </mat-list-option>
+            </mat-selection-list>
+        </div>
+    </div>
+    <div class="right_side">
+        <div style="width: 100%;height: 90%;overflow: auto;">
+        <form [formGroup]="menuAppMainFormGroup">
+        <div fxLayout="row wrap" fxLayoutAlign="space-between center" style="padding-left: 3%;
+        padding-right: 3%;">
+            <mat-form-field class="form_field">
+                <mat-label>App Name</mat-label>
+                <input matInput autocomplete="off" formControlName="appName">
+                <mat-error *ngIf="menuAppMainFormGroup.get('appName').touched && menuAppMainFormGroup.get('appName').hasError('required')">
+                    App Name required</mat-error>
+            </mat-form-field>
+        </div>
+        </form>
+        </div>
+        <button mat-fab color="primary" (click)="ResetControl()" style="position: absolute;
+        bottom: 5rem;
+        right: 3rem;
+        background-color: #4660CE;">
+            <mat-icon>add</mat-icon>
+          </button>
+        <div class="footer" fxLayout="row" fxLayoutAlign="end center">
+            <button *ngIf="selectedMenuApp?.AppID" class="foo_button1" mat-button (click)="DeleteClicked()">Delete</button>
+            <button class="foo_button2" mat-button (click)="SaveClicked()">{{selectedMenuApp.AppID?'Update':'Create'}}</button>
+            <button (click)="ResetControl()" *ngIf="!selectedMenuApp.AppID" class="foo_button1" mat-button>Clear</button>
+            <!-- <button *ngIf="isCreate" class="foo_button2" mat-button (click)="handle_create()">Create</button> -->
+        </div>
+    </div>
+</div>
+

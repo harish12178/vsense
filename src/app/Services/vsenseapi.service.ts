@@ -137,8 +137,8 @@ export class VsenseapiService {
       catchError(this.errorHandler)
     )
   }
-  deletedeviceparam(id:any):Observable<any[]>{
-    return this.httpClient.delete<any[]>(this.server_address + '/master/deletedeviceparam?id='+id)
+  deletedeviceparam(deviceid:string,paramid:string):Observable<any[]>{
+    return this.httpClient.delete<any[]>(this.server_address + '/master/deletedeviceparam?deviceid='+deviceid+'&paramid='+paramid)
     .pipe(
       catchError(this.errorHandler)
     )

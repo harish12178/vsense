@@ -1,0 +1,15 @@
+<div class="box">
+    <mat-toolbar class="toolBg">
+        <mat-toolbar-row fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+            <span class="title dialog-title">Confirmation</span>  
+        </mat-toolbar-row>
+    </mat-toolbar>
+
+    <div mat-dialog-content style="padding: 1rem;">
+        <p style="text-align:center;"> Are you sure you want to {{dialogData.Actiontype}} the {{dialogData.Catagory}} ?</p>
+    </div>
+    <div mat-dialog-actions  fxLayoutAlign="end center" style="padding: 1rem;">
+        <button mat-button type="button" (click)="CloseClicked()">Cancel</button>
+        <button mat-button type="button" class="btnBg" (click)="YesClicked()">Yes</button>
+    </div>
+</div>

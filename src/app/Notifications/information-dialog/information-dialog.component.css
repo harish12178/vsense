@@ -1,0 +1,20 @@
+.mat-dialog-container {
+    padding: 0;
+    border-radius: 0px;
+  }
+.toolBg {
+    background-color: #2A4579 !important;
+    color: white !important;
+  }
+  .btnBg{
+    background-color: #4660CE !important;
+    color: white !important;
+    margin-left:1rem;
+  } 
+  .box{
+    width: 350px;
+    height: 220px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }

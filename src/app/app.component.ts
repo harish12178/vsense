@@ -1,12 +1,15 @@
-import { Component, ViewChild, ElementRef, ViewEncapsulation, AfterViewInit, OnInit } from '@angular/core';
+import { Component, ViewChild, ElementRef, ViewEncapsulation, AfterViewInit, OnInit, Compiler } from '@angular/core';
 import { NavItem } from "./nav-item";
 import { NavService } from "./nav.service";
 import { Router } from '@angular/router';
-import { AuthenticationService } from './Services/authentication.service';
-import { User } from './Models/user';
 import { BnNgIdleService } from 'bn-ng-idle';
-import { InformationDialogComponent } from './information-dialog/information-dialog.component';
+import { InformationDialogComponent } from './Notifications/information-dialog/information-dialog.component';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { MenuUpdataionService } from './services/menu-update.service';
+import { AuthService } from './Services/auth.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { NotificationSnackBarComponent } from './Notifications/notification-snack-bar/notification-snack-bar.component';
+import { SnackBarStatus } from './Notifications/notification-snack-bar/notification-snackbar-status-enum';
 
 @Component({
   selector: 'app-root',
@@ -17,71 +20,29 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 export class AppComponent implements AfterViewInit,OnInit {
   @ViewChild("appDrawer") appDrawer: ElementRef;
 
-  currentUser: User;
+  currentUser;
   islogin:boolean=true;
-
-  navItems: NavItem[] = [
-    {
-      displayName: "Home",
-      iconName: "home",
-      route: "dashboard"
-    },
-    {
-      displayName: "Exceptions",
-      iconName: "error",
-      route: "exceptions"
-    },
-    {
-      displayName: "Masters",
-      iconName: "school",
-      route: "masters",
-      children: [
-        {
-          displayName: "Device",
-          iconName: "",
-          route: "masters/device"
-        },
-        {
-          displayName: "DParam",
-          iconName: "",
-          route: "masters/deviceparam"
-        },
-        {
-          displayName: "Equipment",
-          iconName: "",
-          route: "masters/equipment"
-        },
-        {
-          displayName: "Location",
-          iconName: "",
-          route: "masters/location"
-        },
-        {
-          displayName: "DAssign",
-          iconName: "",
-          route: "masters/deviceassign"
-        },
-        {
-          displayName: "PAssign",
-          iconName: "",
-          route: "masters/deviceassignparam"
-        }
-      ]
-    }
-  ];
+  notificationSnackBarComponent: NotificationSnackBarComponent;
+  navItems: NavItem[] = [];
 
   constructor(
     private navService: NavService,
     public router: Router,
-    private authenticationService: AuthenticationService,
     private bnIdle: BnNgIdleService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private _menuUpdationService:MenuUpdataionService,
+    private authservice:AuthService,
+    private _compiler:Compiler,
+    private snackBar:MatSnackBar,
   ) {
-    this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
-    this.authenticationService.changeEmitted$.subscribe(
+    this.authservice.currentUser.subscribe(x => this.currentUser = x);
+    this.authservice.changeEmitted$.subscribe(
       value => {
         this.islogin = value;
       });
+      this.notificationSnackBarComponent = new NotificationSnackBarComponent(
+        this.snackBar
+    );
   }
 
   OpenInformationDialog(): void {
@@ -92,22 +53,70 @@ export class AppComponent implements AfterViewInit,OnInit {
     const dialogRef = this.dialog.open(InformationDialogComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(
       result => {
-        this.authenticationService.logout();
-      },
-      err => {
-        this.authenticationService.logout();
-      });
+        this.router.navigate(['login']);
+    },
+    err => {
+        this.router.navigate(['login']);
+    });
   }
+  SignoutAndExit(): void {
+    this.authservice.SignOut(this.currentUser.UserID).subscribe(
+        (data) => {
+            localStorage.removeItem('authorizationData');
+            localStorage.removeItem('menuItemsData');
+            this._compiler.clearCache();
+            // this._router.navigate(['auth/login']);
+            console.error('Your session has expired! Please login again');
+            this.OpenInformationDialog();
+            // this.notificationSnackBarComponent.openSnackBar('Idle timout occurred , please login again', SnackBarStatus.danger);
+        },
+        (err) => {
+            console.error(err);
+            // this.notificationSnackBarComponent.openSnackBar(err instanceof Object ? 'Something went wrong' : err, SnackBarStatus.danger);
+            localStorage.removeItem('authorizationData');
+            localStorage.removeItem('menuItemsData');
+            this._compiler.clearCache();
+            // this._router.navigate(['auth/login']);
+            console.error('Your session has expired! Please login again');
+            this.OpenInformationDialog();
+            // this.notificationSnackBarComponent.openSnackBar('Idle timout occurred , please login again', SnackBarStatus.danger);
+        }
+    );
+}
+
   logout() {
-    this.authenticationService.logout();
+    this.authservice.SignOut(this.currentUser.UserID).subscribe(
+      (data) => {
+          localStorage.clear();
+          this._compiler.clearCache();
+          this.router.navigate(['login']);
+          this.notificationSnackBarComponent.openSnackBar('Signed out successfully', SnackBarStatus.success);
+      },
+      (err) => {
+          console.error(err);
+          this.notificationSnackBarComponent.openSnackBar(err instanceof Object ? 'Something went wrong' : err, SnackBarStatus.danger);
+      }
+  );
+   this.router.navigate(['login']);
   }
   ngOnInit() {
+    const menuItems = localStorage.getItem('menuItemsData');
+        if (menuItems) {
+            this.navItems = JSON.parse(menuItems);
+        }
+        // Update the menu items on First time after log in
+        this._menuUpdationService.GetAndUpdateMenus().subscribe(
+            data => {
+                this.navItems = data;
+            }
+        );
     this.bnIdle.startWatching(600).subscribe((res) => {
       if (res) {
-        if (this.authenticationService.currentUserValue) {
+        if (!this.islogin) {
           console.log('session expired');
+          // localStorage.clear();
           this.bnIdle.stopTimer();
-          this.OpenInformationDialog();
+          this.SignoutAndExit();
         }
       }
     });

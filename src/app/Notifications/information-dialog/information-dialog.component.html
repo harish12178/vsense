@@ -1,0 +1,13 @@
+<div class="box">
+  <mat-toolbar class="toolBg">
+    <mat-toolbar-row fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+        <span class="title dialog-title">Information</span>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <div mat-dialog-content style="padding:1rem;">
+      <p style="text-align:center;color:red;font-weight:500">{{message}}</p>
+  </div>
+  <div mat-dialog-actions fxLayoutAlign="center center" style="padding:1rem">
+    <button mat-button type="button" class="btnBg" (click)="YesClicked()">Ok</button>
+  </div>
+</div>

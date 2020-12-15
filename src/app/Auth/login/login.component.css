@@ -1,0 +1,85 @@
+.fwrapper{
+    width: 28%;
+    min-width: 28%;
+    max-width: 28%;
+    overflow: auto;
+    height:100%;
+    background-color: white;
+    -webkit-overflow-scrolling: touch;
+    box-shadow: 0 8px 10px -5px rgba(0,0,0,.2), 0 16px 24px 2px rgba(0,0,0,.14), 0 6px 30px 5px rgba(0,0,0,.12);
+}
+.formarea{
+    padding: 128px 48px 48px;
+}
+.title{
+    font-size: 25px;
+    line-height: 1.57;
+    letter-spacing: 2.28px;
+    text-align: left;
+    color: #242424;
+    font-weight: 900;
+    margin-bottom: 15px;
+    margin-top: -35px;
+}
+.border{
+    border-bottom: solid #3a7be3 !important;
+    margin-left: 20px;
+    margin-right: 212px;
+    margin-top: -15px!important;
+}
+.subtitle{
+    opacity: .8;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.33;
+    letter-spacing: .72px;
+    text-align: left;
+    color: #454545;
+    margin-top: 20px!important;
+}
+.submit-button {
+    width: 100%;
+    margin: 16px auto;
+    display: block;
+}
+.forgot-password {
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 16px;
+    opacity: 0.8;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.33;
+    letter-spacing: 0.72px;
+    text-align: left;
+    color: #454545;
+}
+.remember-forgot-password {
+    font-size: 13px;
+    margin-top: 8px;
+}
+.input{
+    width:100%;
+
+}
+.bg_logo{
+    width: 72%;
+    height: 100%;
+    overflow: hidden;
+    background-image: url('/assets/images/iotlogo.jpg');
+    background-size:100% 100%;
+}
+
+.submit-button.mat-flat-button.mat-primary, .mat-raised-button.mat-primary, .mat-fab.mat-primary, .mat-mini-fab.mat-primary {
+    background-color: #039be5;
+}
+.submit-button:focus {outline:0;}
+.progressBarPostion {
+    position: absolute !important;
+    top: 192px;
+    z-index: 1;
+    left: 82%;
+}
+::ng-deep .progressBarPostion.mat-progress-spinner circle, .mat-spinner circle {
+    stroke: #039be5;
+}

@@ -1,0 +1,150 @@
+<div fxLayout="row" fxLayoutAlign="start start" style="height: 89.5%">
+    <div class="left_side">
+        <div fxLayout="column" fxLayoutAlign="start center" style="margin-top: 1rem;">
+            <div fxLayout="row" fxLayoutAlign="center center" class="searchbar">
+                <input [(ngModel)]="searchText" class="inputfield" placeholder="Search" style="margin-left: 0.5rem;">
+                <img src="assets/images/search.svg" style="width: 15px; margin-right: 0.5rem;">
+            </div>
+            <mat-selection-list [multiple]="false" [disableRipple]="true" #mdevices
+                style="width: 100%;margin-bottom: 1.5rem;" class="matlist">
+                <mat-list-option class="cards" *ngFor="let item  of AllUsers  | filter: searchText;index as i"
+                    [selected]="selectID==item.UserID" (click)="loadSelectedUser(item)">
+                    <div style="width: 100%;height: 100%;padding-left: 3%;" fxLayout="column"
+                        fxLayoutAlign="center start">
+                        <div fxLayout="row" fxLayoutAlign="space-between center" style="width: 100%;">
+                            <span style="font-weight: 500;
+                        letter-spacing: 0.5px;font-size: 15px;">{{item.UserName}}</span>
+                            <span style="font-size: 14px;">{{item.CreatedOn | date:'dd/MM/yyyy'}}</span>
+                        </div>
+                        <span style="font-size: 13px;
+                        opacity: 0.6;">{{item.Email}}</span>
+                    </div>
+                </mat-list-option>
+            </mat-selection-list>
+        </div>
+    </div>
+    <div class="right_side">
+        <div style="width: 100%;height: 90%;overflow: auto;">
+            <form [formGroup]="userMainFormGroup">
+                <div fxLayout="row wrap" fxLayoutAlign="space-between center" style="padding-left: 3%;
+                padding-right: 3%;">
+                    <mat-form-field class="form_field">
+                        <input matInput placeholder="User Name" formControlName="userName">
+                        <mat-error
+                            *ngIf="userMainFormGroup.get('userName').touched &&  userMainFormGroup.get('userName').hasError('required')">
+                            User Name required</mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="form_field">
+                        <input matInput placeholder="Email ID" formControlName="email">
+                        <mat-error
+                            *ngIf="userMainFormGroup.get('email').touched && userMainFormGroup.get('email').hasError('required')">
+                            Email is required
+                        </mat-error>
+                        <mat-error *ngIf="userMainFormGroup.get('email').touched && !userMainFormGroup.get('email').hasError('required') &&
+                            userMainFormGroup.get('email').hasError('email')">
+                            Please enter a valid email address
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="form_field">
+                        <input matInput placeholder="Mobile Number" pattern="^(\+91[\-\s]?)?[0]?(91)?[6789]\d{9}$"
+                            formControlName="contactNumber">
+                        <mat-error
+                            *ngIf="userMainFormGroup.get('contactNumber').touched && userMainFormGroup.get('contactNumber').hasError('required')">
+                            Mobile Number is required
+                        </mat-error>
+                        <mat-error *ngIf="userMainFormGroup.get('contactNumber').touched && !userMainFormGroup.get('contactNumber').hasError('required') &&
+                                                    userMainFormGroup.get('contactNumber').hasError('pattern')">
+                            Please enter a valid Mobile Number
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="form_field">
+                        <mat-select placeholder="Role Name" formControlName="roleID">
+                            <mat-option *ngFor="let rol of AllRoles" [value]="rol.RoleID">
+                                {{rol.RoleName}}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error
+                            *ngIf="userMainFormGroup.get('roleID').touched && userMainFormGroup.get('roleID').hasError('required')">
+                            Role
+                            Name required</mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="form_field">
+                        <input matInput placeholder="Name" formControlName="displayName">
+                        <mat-error
+                            *ngIf="userMainFormGroup.get('displayName').touched &&  userMainFormGroup.get('displayName').hasError('required')">
+                            Display Name required</mat-error>
+                    </mat-form-field>
+                </div>
+            </form>
+
+            <div [hidden]="!AppUsages?.length" style="padding-left:3%;padding-right:3%;">
+                <div fxLayout="column" fxLayoutAlign="center end" class="titlediv">
+                    <span class="title">App Usage</span>
+                    <div class="underline"></div>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="space-between center" style="margin-bottom: 1.5rem;">
+                    <div fxLaout="row" fxLayoutAlign="start center" class="searchbarT">
+                        <img src="assets/images/search.svg" style="width:18px;margin-left: 1rem;margin-right: 1rem;">
+                        <input placeholder="Search" class="inputfieldT" [(ngModel)]="searchText"
+                            (keyup)="applyFilter($event)" autocomplete="off">
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="0.5rem">
+                        <div matRipple fxLayout="row" fxLayoutAlign="space-evenly center" class="excel"
+                            (click)="exportAsXLSX()">
+                            <img src="assets/images/excel.svg" style="width: 18px;">
+                            <span style="color: #3e3e3e;font-size:11px;font-weight:500;">Download to Excel</span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <mat-table [dataSource]="tableDataSource" class="tableborder">
+
+                    <ng-container matColumnDef="AppName">
+                        <mat-header-cell *matHeaderCellDef class="headercolor alignhead"> App Name </mat-header-cell>
+                        <mat-cell *matCellDef="let element;index as i" class="alignbox">
+                            <div fxLayout="row" fxLayoutAlign="space-evenly center">
+                                <div class="divbox" [ngStyle]="{'background-color':i%2==0 ? '#d87e39' : '#6f52ed'}">
+                                </div>
+                                <label>{{element.AppName}}</label>
+                            </div>
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="UsageCount">
+                        <mat-header-cell *matHeaderCellDef class="headercolor aligncenter"> Usage</mat-header-cell>
+                        <mat-cell *matCellDef="let element" class="aligncenter">{{element.UsageCount}} </mat-cell>
+                    </ng-container>
+
+
+                    <ng-container matColumnDef="LastUsedOn">
+                        <mat-header-cell *matHeaderCellDef class="headercolor aligncenter"> Last UsedOn
+                        </mat-header-cell>
+                        <mat-cell *matCellDef="let element" class="aligncenter">
+                            {{element.LastUsedOn | date :'dd/MM/yyyy hh:mm:ss a'}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <mat-header-row *matHeaderRowDef="tableDisplayedColumns" class="colheader"></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: tableDisplayedColumns;" style='height:3em'></mat-row>
+                </mat-table>
+                <mat-paginator [pageSizeOptions]="[5,10,20]"></mat-paginator>
+            </div>
+        </div>
+
+        <button mat-fab color="primary" (click)="ResetControl()" style="position: absolute;
+        bottom: 7rem;
+        right: 3rem;
+        background-color: #4660CE;">
+            <mat-icon>add</mat-icon>
+        </button>
+        <div class="footer" fxLayout="row" fxLayoutAlign="end center">
+            <button *ngIf="selectedUser?.UserID" class="foo_button1" mat-button
+                (click)="DeleteClicked()">Delete</button>
+            <button class="foo_button2" mat-button
+                (click)="SaveClicked()">{{selectedUser.UserID?'Update':'Create'}}</button>
+            <button (click)="ResetControl()" *ngIf="!selectedUser.UserID" class="foo_button1" mat-button>Clear</button>
+            <!-- <button *ngIf="isCreate" class="foo_button2" mat-button (click)="handle_create()">Create</button> -->
+        </div>
+    </div>
+</div>

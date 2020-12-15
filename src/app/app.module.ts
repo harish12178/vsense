@@ -26,36 +26,52 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import {MatSelectModule} from '@angular/material/select';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatRippleModule} from '@angular/material/core';
+import {MatCardModule} from '@angular/material/card';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatSortModule} from '@angular/material/sort';
 
-import { MenuListItemComponent } from "./menu-list-item/menu-list-item.component";
+import { MenuListItemComponent } from "./Layout/menu-list-item/menu-list-item.component";
 import { NavService } from "./nav.service";
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { TopNavComponent } from "./top-nav/top-nav.component";
-import { Dashboard1Component } from './Dashboard/dashboard1/dashboard1.component';
-import { Dashboard2Component } from './Dashboard/dashboard2/dashboard2.component';
-import { DeviceComponent } from './Master/device/device.component';
-import { DeviceparamComponent } from './Master/deviceparam/deviceparam.component';
-import { EquipmentComponent } from './Master/equipment/equipment.component';
-import { LocationComponent } from './Master/location/location.component';
-import { DeviceassignComponent } from './Master/deviceassign/deviceassign.component';
-import { DeviceassignparamComponent } from './Master/deviceassignparam/deviceassignparam.component';
-import { ExceptionComponent } from './Exception/exception/exception.component';
-import {NotificationSnackBarComponent} from './notification-snack-bar/notification-snack-bar.component';
-import {InformationDialogComponent} from './information-dialog/information-dialog.component';
-import { LoginComponent } from './login/login.component';
-import { JwtInterceptor, ErrorInterceptor } from './Auth';
-import { UserService } from './Services/user.service';
-import { AuthenticationService } from './Services/authentication.service';
+import { TopNavComponent } from "./Layout/top-nav/top-nav.component";
+import { Dashboard1Component } from './Pages/Dashboard/dashboard1/dashboard1.component';
+import { Dashboard2Component } from './Pages/Dashboard/dashboard2/dashboard2.component';
+import { DeviceComponent } from './Pages/Master/device/device.component';
+import { DeviceparamComponent } from './Pages/Master/deviceparam/deviceparam.component';
+import { EquipmentComponent } from './Pages/Master/equipment/equipment.component';
+import { LocationComponent } from './Pages/Master/location/location.component';
+import { DeviceassignComponent } from './Pages/Master/deviceassign/deviceassign.component';
+import { DeviceassignparamComponent } from './Pages/Master/deviceassignparam/deviceassignparam.component';
+import { ExceptionComponent } from './Pages/Exception/exception/exception.component';
+import {NotificationSnackBarComponent} from './Notifications/notification-snack-bar/notification-snack-bar.component';
+import {InformationDialogComponent} from './Notifications/information-dialog/information-dialog.component';
+import { LoginComponent } from './Auth/login/login.component';
 import { BnNgIdleService } from 'bn-ng-idle';
 import { VsenseapiService } from './Services/vsenseapi.service';
 import { NotificationService } from './Services/notification.service';
 import { ExcelService } from './Services/excel.service';
 import { DatePipe } from '@angular/common';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import {MasterService} from './Services/master.service';
+import {AuthService} from './Services/auth.service';
+import {AuthInterceptorService} from './Services/auth-interceptor.service';
+import {MenuAppComponent} from './Pages/UME/menu-app/menu-app.component';
+import {RoleComponent} from './Pages/UME/role/role.component';
+import {UserComponent} from './Pages/UME/user/user.component';
+import {NotificationDialogComponent} from './Notifications/notification-dialog/notification-dialog.component';
+import {MenuUpdataionService} from './services/menu-update.service';
+import {ForgetPasswordLinkDialogComponent} from './Auth/forget-password-link-dialog/forget-password-link-dialog.component';
+import { WINDOW_PROVIDERS } from './window.providers';
+import {ForgotPasswordComponent} from './Auth/forgot-password/forgot-password.component';
+import {ChangePasswordDialogComponent} from './Auth/change-password-dialog/change-password-dialog.component';
+import {ChangePasswordComponent} from './Auth/change-password/change-password.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    MenuAppComponent,
+    RoleComponent,
+    UserComponent,
     MenuListItemComponent,
     TopNavComponent,
     AppComponent,
@@ -70,7 +86,12 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     DeviceassignparamComponent,
     ExceptionComponent,
     LoginComponent,
-    InformationDialogComponent
+    InformationDialogComponent,
+    NotificationDialogComponent,
+    ForgetPasswordLinkDialogComponent,
+    ForgotPasswordComponent,
+    ChangePasswordDialogComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,
@@ -98,13 +119,17 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     MatSelectModule,
     MatProgressSpinnerModule,
     MatRippleModule,
-    Ng2SearchPipeModule
+    Ng2SearchPipeModule,
+    MatCardModule,
+    MatPaginatorModule,
+    MatSortModule
   ],
-  providers: [NavService,VsenseapiService,NotificationService,UserService,AuthenticationService,BnNgIdleService,
-    ExcelService,DatePipe,
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }],
+  providers: [NavService,VsenseapiService,NotificationService,BnNgIdleService,
+    ExcelService,DatePipe,MasterService,AuthService,AuthInterceptorService,MenuUpdataionService,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true },WINDOW_PROVIDERS
+  ],
   bootstrap: [AppComponent],
-  entryComponents:[InformationDialogComponent]
+  entryComponents:[InformationDialogComponent,NotificationDialogComponent,
+    ForgetPasswordLinkDialogComponent,ChangePasswordDialogComponent]
 })
 export class AppModule { }

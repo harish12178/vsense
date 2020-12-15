@@ -27,6 +27,7 @@
     "chart.js": "^2.9.4",
     "chartjs-plugin-labels": "^1.1.0",
     "file-saver": "^2.0.5",
+    "guid-typescript": "^1.0.9",
     "ng2-charts": "^2.4.2",
     "ng2-search-filter": "^0.5.1",
     "rxjs": "~6.5.5",

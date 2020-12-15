@@ -1,16 +1,21 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './Auth';
-import { Dashboard1Component } from './Dashboard/dashboard1/dashboard1.component';
-import { Dashboard2Component } from './Dashboard/dashboard2/dashboard2.component';
-import { ExceptionComponent } from './Exception/exception/exception.component';
-import { LoginComponent } from './login/login.component';
-import { DeviceComponent } from './Master/device/device.component';
-import { DeviceassignComponent } from './Master/deviceassign/deviceassign.component';
-import { DeviceassignparamComponent } from './Master/deviceassignparam/deviceassignparam.component';
-import { DeviceparamComponent } from './Master/deviceparam/deviceparam.component';
-import { EquipmentComponent } from './Master/equipment/equipment.component';
-import { LocationComponent } from './Master/location/location.component';
+import { Dashboard1Component } from './Pages/Dashboard/dashboard1/dashboard1.component';
+import { Dashboard2Component } from './Pages/Dashboard/dashboard2/dashboard2.component';
+import { ExceptionComponent } from './Pages/Exception/exception/exception.component';
+import { LoginComponent } from './Auth/login/login.component';
+import { DeviceComponent } from './Pages/Master/device/device.component';
+import { DeviceassignComponent } from './Pages/Master/deviceassign/deviceassign.component';
+import { DeviceassignparamComponent } from './Pages/Master/deviceassignparam/deviceassignparam.component';
+import { DeviceparamComponent } from './Pages/Master/deviceparam/deviceparam.component';
+import { EquipmentComponent } from './Pages/Master/equipment/equipment.component';
+import { LocationComponent } from './Pages/Master/location/location.component';
+import { MenuAppComponent } from './Pages/UME/menu-app/menu-app.component';
+import { RoleComponent } from './Pages/UME/role/role.component';
+import { UserComponent } from './Pages/UME/user/user.component';
+import { ForgotPasswordComponent } from './Auth/forgot-password/forgot-password.component';
+import { ChangePasswordComponent } from './Auth/change-password/change-password.component';
 
 const routes: Routes = [
   {
@@ -35,32 +40,52 @@ const routes: Routes = [
       {
         path:'device',
         component:DeviceComponent,
-        canActivate: [AuthGuard]
+
       },
       {
         path:'deviceparam',
         component:DeviceparamComponent,
-        canActivate: [AuthGuard]
+
       },
       {
         path:'equipment',
         component:EquipmentComponent,
-        canActivate: [AuthGuard]
+
       },
       {
         path:'location',
         component:LocationComponent,
-        canActivate: [AuthGuard]
+
       },
       {
         path:'deviceassign',
         component:DeviceassignComponent,
-        canActivate: [AuthGuard]
+
       },
       {
         path:'deviceassignparam',
         component:DeviceassignparamComponent,
-        canActivate: [AuthGuard]
+      }
+    ]
+  },
+  {
+    path:'ume',
+    canActivate: [AuthGuard],
+    children:[
+      {
+        path:'app',
+        component:MenuAppComponent,
+        
+      },
+      {
+        path:'role',
+        component:RoleComponent,
+        
+      },
+      {
+        path:'user',
+        component:UserComponent,
+        
       }
     ]
   },
@@ -72,6 +97,14 @@ const routes: Routes = [
   {
     path:'login',
     component:LoginComponent
+  },
+  {
+    path:'forgotPassword',
+    component:ForgotPasswordComponent
+  },
+  {
+    path:'changePassword',
+    component:ChangePasswordComponent
   },
   { path: '**', redirectTo: '' }
 ];
