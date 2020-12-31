@@ -96,3 +96,65 @@
 .matlist:focus{
     outline: none;
 }
+
+.colheader{
+    background-color:  #2A4579;
+    min-height: 30px;
+}
+.headercolor{
+    color: white; 
+    height:44px;
+    font-size:11px;
+
+}
+.alignbox{
+    margin-left:-24px;
+    margin-right:24px;
+    height: 65px;
+    }
+    .alignhead{
+        margin-right: 1%;
+        justify-content: center;
+    }
+.boldtext{
+    font-weight: 500;
+
+}
+.tableborder{
+    border: 1px solid #dbd9d9;
+    width: 100%;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+}
+.tformfield{
+    width:85%;
+}
+
+.divbox{
+    width: 12px;
+    height: 22px;
+  opacity: 0.6;
+  margin-right: 12px;
+background:#ffffff;
+}
+
+.aligncenter{
+    justify-content:center;
+    }
+    
+mat-cell:first-of-type, mat-header-cell:first-of-type, mat-footer-cell:first-of-type {
+    padding-left: 0;
+}
+mat-cell:last-of-type, mat-header-cell:last-of-type, mat-footer-cell:last-of-type {
+    padding-right: 0;
+}
+.cellselect{
+    height: 32px;
+    width:5rem;
+    border-radius: 3px;
+      border: solid 1px #c3c3c3;
+      background-color: #ffffff;
+      display: flex;
+align-items: center;
+justify-content: center;
+    }

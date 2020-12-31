@@ -57,7 +57,7 @@
             </div>
               <button mat-raised-button color="primary" (click)="addparamassignment()" style="position: absolute;
               right:1%;background-color: #4660CE;">Add Param</button>
-              <div style="width:96%;padding-left: 3%;
+              <div style="width:96%;margin-left: 3%;
               overflow: auto;">
               <mat-table [dataSource]="dataSource" class="tableborder" formArrayName="parameters">
                 <ng-container matColumnDef="pramID">
@@ -132,7 +132,7 @@
                   </mat-cell>
                 </ng-container>
             
-                <ng-container matColumnDef="soft_1_Exception_Threshold">
+                <!-- <ng-container matColumnDef="soft_1_Exception_Threshold">
                   <mat-header-cell *matHeaderCellDef class="headercolor "> SET1</mat-header-cell>
                   <mat-cell *matCellDef="let element;index as i" [formGroupName]="i" >
                     <mat-form-field class="tformfield">
@@ -163,7 +163,7 @@
                             <input type="number" matInput autocomplete="off" formControlName="hard_2_Exception_Threshold">
                         </mat-form-field>
                     </mat-cell>
-                  </ng-container>
+                  </ng-container> -->
             
                 <ng-container matColumnDef="activityGraphTitle">
                   <mat-header-cell *matHeaderCellDef class="headercolor ">GraphTitle</mat-header-cell>

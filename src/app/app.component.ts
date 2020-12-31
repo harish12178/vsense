@@ -10,6 +10,8 @@ import { AuthService } from './Services/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { NotificationSnackBarComponent } from './Notifications/notification-snack-bar/notification-snack-bar.component';
 import { SnackBarStatus } from './Notifications/notification-snack-bar/notification-snackbar-status-enum';
+import { AuthenticationDetails, ChangePassword } from './Models/master';
+import { ChangePasswordDialogComponent } from './Auth/change-password-dialog/change-password-dialog.component';
 
 @Component({
   selector: 'app-root',
@@ -122,6 +124,53 @@ export class AppComponent implements AfterViewInit,OnInit {
     });
   }
 
+  openChangePasswordDialog(data: AuthenticationDetails): void {
+    const dialogConfig: MatDialogConfig = {
+        data: null,
+        panelClass: "change-password-dialog",
+    };
+    const dialogRef = this.dialog.open(
+        ChangePasswordDialogComponent,
+        dialogConfig
+    );
+    dialogRef.afterClosed().subscribe((result) => {
+        if (result) {
+            const changePassword = result as ChangePassword;
+            changePassword.UserID = data.UserID;
+            changePassword.UserName = data.UserName;
+            this.authservice.ChangePassword(changePassword).subscribe(
+                (res) => {
+                    // console.log(res);
+                    // this.notificationSnackBarComponent.openSnackBar('Password updated successfully', SnackBarStatus.success);
+                    this.notificationSnackBarComponent.openSnackBar(
+                        "Password updated successfully, please log with new password",
+                        SnackBarStatus.success
+                    );
+                    this.router.navigate(["/login"]);
+                },
+                (err) => {
+                    this.notificationSnackBarComponent.openSnackBar(
+                        err instanceof Object
+                            ? "Something went wrong"
+                            : err,
+                        SnackBarStatus.danger
+                    );
+                    this.router.navigate(["/login"]);
+                    console.error(err);
+                }
+            );
+        }
+    });
+}
+
+userselect(value){
+  if(value==1){
+    this.router.navigate(['/changePassword']);
+  }
+  else{
+    this.logout();
+  }
+}
   ngAfterViewInit() {
     this.navService.appDrawer = this.appDrawer;
   }

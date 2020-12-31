@@ -18,8 +18,8 @@ export class DeviceassignparamComponent implements OnInit {
   selectID;
   paramExist=0;
   deviceparamassignments=[];paramassigns=[];deviceparams=[];
-  displayedColumns: string[] = ['pramID', 'title', 'unit','longText','min','max',"icon","soft_1_Exception_Threshold", 'soft_2_Exception_Threshold',
-  'hard_2_Exception_Threshold','hard_2_Exception_Threshold','activityGraphTitle','delete'];
+  //"soft_1_Exception_Threshold", 'soft_2_Exception_Threshold','hard_2_Exception_Threshold','hard_2_Exception_Threshold'
+  displayedColumns: string[] = ['pramID', 'title', 'unit','longText','min','max',"icon",'activityGraphTitle','delete'];
   row:FormGroup;
   dataSource=new BehaviorSubject<AbstractControl[]>([]);
   paramAssignForms:FormArray=this.fb.array([]);

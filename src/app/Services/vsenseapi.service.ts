@@ -3,12 +3,13 @@ import { HttpClient,HttpErrorResponse, HttpHeaders  } from '@angular/common/http
 import {  throwError, Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Subject } from 'rxjs/internal/Subject';
+import { environment } from "src/environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class VsenseapiService {
-  private server_address = "http://192.168.0.28:7051/vsenseapi";
+  private server_address = environment.apiUrl;
  //private server_address = "http://localhost:5501/vsenseapi";
 
   httpOptions = {
@@ -255,7 +256,24 @@ export class VsenseapiService {
       catchError(this.errorHandler)
     )
   }
-  
+  getparamgroup():Observable<any[]>{
+    return this.httpClient.get<any[]>(this.server_address+'/master/getparamgroup')
+    .pipe(
+      catchError(this.errorHandler)
+    )
+  }
+  createparamgroup(data: any): Observable<any[]> {
+    return this.httpClient.post<any>(this.server_address + '/master/paramgroup',JSON.stringify(data),this.httpOptions)
+    .pipe(
+      catchError(this.errorHandler)
+    )
+  } 
+  updateparamgroup(data: any): Observable<any[]> {
+    return this.httpClient.post<any>(this.server_address + '/master/updateparamgroup',JSON.stringify(data),this.httpOptions)
+    .pipe(
+      catchError(this.errorHandler)
+    )
+  } 
   errorHandler(error: HttpErrorResponse): Observable<any[]> {
     return throwError(error.error instanceof Object ? error.error.Message ? error.error.Message : error.error : error.error || error.message || 'Server Error');
 }

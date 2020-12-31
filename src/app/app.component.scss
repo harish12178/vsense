@@ -61,6 +61,21 @@
     border-top:1px solid white;
     opacity:0.8;
     }
+    .userselect{
+      width: 6rem !important;
+    }
+    .userselect .mat-select-placeholder {
+      color: white !important;
+      font-size: 13px;
+      font-weight: 500;
+  }
+  .userselect .mat-select-value {
+    color: white;
+}
+  .userselect .mat-select-arrow {
+    color: white;
+}
+
  /* width */
  ::-webkit-scrollbar {
     width: 6px;
@@ -74,11 +89,11 @@
    
   /* Handle */
   ::-webkit-scrollbar-thumb {
-    background: #888; 
+    background: #aaa; 
     border-radius: 4px;
   }
   
   /* Handle on hover */
   ::-webkit-scrollbar-thumb:hover {
-    background: #555; 
+    background: #888; 
   }

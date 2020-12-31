@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Compiler, Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -43,9 +43,11 @@ notificationSnackBarComponent: NotificationSnackBarComponent;
         private _authService:AuthService,
         private _menuUpdationService:MenuUpdataionService,
         public dialog: MatDialog,
+        private _compiler:Compiler
         
     ) { 
         this._authService.islogin(true);
+        this._compiler.clearCache();
         // redirect to home if already logged in
         localStorage.clear();
         this.notificationSnackBarComponent = new NotificationSnackBarComponent(

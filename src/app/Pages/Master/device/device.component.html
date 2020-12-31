@@ -2,12 +2,16 @@
     <div class="left_side">
         <div fxLayout="column" fxLayoutAlign="start center" style="margin-top: 1rem;">
             <div fxLayout="row" fxLayoutAlign="center center" class="searchbar">
-                <input class="inputfield" [(ngModel)]="searchText" type="text" placeholder="Search" style="margin-left: 0.5rem;">
+                <input class="inputfield" [(ngModel)]="searchText" type="text" placeholder="Search"
+                    style="margin-left: 0.5rem;">
                 <img src="assets/images/search.svg" style="width: 15px; margin-right: 0.5rem;">
             </div>
-            <mat-selection-list [multiple]="false" [disableRipple]="true" #mdevices style="width: 100%;margin-bottom: 1.5rem;" class="matlist">
-                <mat-list-option class="cards" *ngFor="let item of devices | filter:searchText;index as i" [selected]="selectID==item.deviceID" (click)="getselected(item)">
-                    <div style="width: 100%;height: 100%;padding-left: 3%;" fxLayout="column" fxLayoutAlign="center start">
+            <mat-selection-list [multiple]="false" [disableRipple]="true" #mdevices
+                style="width: 100%;margin-bottom: 1.5rem;" class="matlist">
+                <mat-list-option class="cards" *ngFor="let item of devices | filter:searchText;index as i"
+                    [selected]="selectID==item.deviceID" (click)="getselected(item)">
+                    <div style="width: 100%;height: 100%;padding-left: 3%;" fxLayout="column"
+                        fxLayoutAlign="center start">
                         <div fxLayout="row" fxLayoutAlign="space-between center" style="width: 100%;">
                             <span style="font-weight: 500;
                         letter-spacing: 0.5px;font-size: 15px;">{{item.deviceID}}</span>
@@ -22,40 +26,40 @@
     </div>
     <div class="right_side">
         <div style="width: 100%;height: 90%;overflow: auto;">
-        <form [formGroup]="mform">
-        <div fxLayout="row wrap" fxLayoutAlign="space-between center" style="padding-left: 3%;
+            <form [formGroup]="mform">
+                <div fxLayout="row wrap" fxLayoutAlign="space-between center" style="padding-left: 3%;
         padding-right: 3%;">
-        <mat-form-field class="form_field" *ngIf="isCreate">
-            <mat-label>DeviceID</mat-label>
-            <input matInput autocomplete="off" formControlName="deviceID">
-            <mat-error *ngIf="mform.get('deviceID').touched && mform.get('deviceID').hasError('required')">
-                DeviceID required</mat-error>
-        </mat-form-field>
-            <mat-form-field class="form_field">
-                <mat-label>Name</mat-label>
-                <input matInput autocomplete="off" formControlName="name">
-                <mat-error *ngIf="mform.get('name').touched && mform.get('name').hasError('required')">
-                    Name required</mat-error>
-            </mat-form-field>
-            <mat-form-field class="form_field">
-                <mat-label>Purpose</mat-label>
-                <input matInput autocomplete="off" formControlName="purpose">
-            </mat-form-field>
-            <!-- <mat-form-field class="form_field">
+                    <mat-form-field class="form_field" *ngIf="isCreate">
+                        <mat-label>DeviceID</mat-label>
+                        <input matInput autocomplete="off" formControlName="deviceID">
+                        <mat-error *ngIf="mform.get('deviceID').touched && mform.get('deviceID').hasError('required')">
+                            DeviceID required</mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="form_field">
+                        <mat-label>Name</mat-label>
+                        <input matInput autocomplete="off" formControlName="name">
+                        <mat-error *ngIf="mform.get('name').touched && mform.get('name').hasError('required')">
+                            Name required</mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="form_field">
+                        <mat-label>Purpose</mat-label>
+                        <input matInput autocomplete="off" formControlName="purpose">
+                    </mat-form-field>
+                    <!-- <mat-form-field class="form_field">
                 <mat-label>PuttoUse</mat-label>
                 <input matInput autocomplete="off" type="datetime" [(ngModel)]="device.puttoUse">
             </mat-form-field> -->
-            <mat-form-field class="form_field">
-                <mat-label>PuttoUse</mat-label>
-                <input matInput [matDatepicker]="picker1" autocomplete="off" formControlName="puttoUse">
-                <mat-datepicker-toggle matSuffix [for]="picker1">
-                  <!-- <img src="assets/images/calender.jpg" matDatepickerToggleIcon width="20px"> -->
-                </mat-datepicker-toggle>
-                <mat-datepicker #picker1></mat-datepicker>
-                <mat-error *ngIf="mform.get('puttoUse').touched && mform.get('puttoUse').hasError('required')">
-                    PuttoUse required</mat-error>
-            </mat-form-field>
-            <mat-form-field class="form_field">
+                    <mat-form-field class="form_field">
+                        <mat-label>PuttoUse</mat-label>
+                        <input matInput [matDatepicker]="picker1" autocomplete="off" formControlName="puttoUse">
+                        <mat-datepicker-toggle matSuffix [for]="picker1">
+                            <!-- <img src="assets/images/calender.jpg" matDatepickerToggleIcon width="20px"> -->
+                        </mat-datepicker-toggle>
+                        <mat-datepicker #picker1></mat-datepicker>
+                        <mat-error *ngIf="mform.get('puttoUse').touched && mform.get('puttoUse').hasError('required')">
+                            PuttoUse required</mat-error>
+                    </mat-form-field>
+                    <!-- <mat-form-field class="form_field">
                 <mat-label>Battery</mat-label>
                 <input matInput autocomplete="off" type="number" formControlName="battery">
                 <mat-error *ngIf="mform.get('battery').touched && mform.get('battery').hasError('required')">
@@ -76,27 +80,141 @@
                 <input matInput autocomplete="off" type="number" formControlName="vcc">
                 <mat-error *ngIf="mform.get('vcc').touched && mform.get('vcc').hasError('required')">
                     Vcc required</mat-error>
-            </mat-form-field>
-            <mat-form-field class="form_field">
-                <mat-label>Lifespan</mat-label>
-                <input matInput autocomplete="off" type="number" formControlName="lifespan">
-                <mat-error *ngIf="mform.get('lifespan').touched && mform.get('lifespan').hasError('required')">
-                    Lifespan required</mat-error>
-            </mat-form-field>
+            </mat-form-field> -->
+                    <mat-form-field class="form_field">
+                        <mat-label>Lifespan(Years)</mat-label>
+                        <input matInput autocomplete="off" type="number" formControlName="lifespan">
+                        <mat-error *ngIf="mform.get('lifespan').touched && mform.get('lifespan').hasError('required')">
+                            Lifespan required</mat-error>
+                    </mat-form-field>
+                </div>
+            </form>
+
+            <form [formGroup]="pform" style="margin-top: 1rem;">
+                <button mat-raised-button color="primary" (click)="addparam()" style="position: absolute;
+              right:3%;background-color: #4660CE;">Add Param</button>
+                <div style="width:94%;padding-left: 3%;padding-right: 3%;
+              overflow: auto;">
+                    <mat-table [dataSource]="dataSource" class="tableborder" formArrayName="parameters">
+                        <ng-container matColumnDef="paramID">
+                            <mat-header-cell *matHeaderCellDef class="headercolor alignhead"> ParamID</mat-header-cell>
+                            <mat-cell *matCellDef="let element;index as i" [formGroupName]="i"
+                                style="margin-right: 1%;">
+                                <div fxLayout="row" fxLayoutAlign="start center">
+                                    <div class="divbox" [ngStyle]="{'background-color':i%2==0 ? '#d87e39' : '#6f52ed'}">
+                                    </div>
+                                        <mat-form-field class="tformfield">
+                                            <input matInput autocomplete="off" formControlName="paramID">
+                                        </mat-form-field>
+
+                                </div>
+                            </mat-cell>
+                        </ng-container>
+
+
+                        <ng-container matColumnDef="title">
+                            <mat-header-cell *matHeaderCellDef class="headercolor"> Title</mat-header-cell>
+                            <mat-cell *matCellDef="let element;index as i" [formGroupName]="i">
+                                <mat-form-field class="tformfield">
+                                    <input matInput autocomplete="off" formControlName="title">
+                                </mat-form-field>
+                            </mat-cell>
+                        </ng-container>
+
+
+                        <ng-container matColumnDef="unit">
+                            <mat-header-cell *matHeaderCellDef class="headercolor"> Unit</mat-header-cell>
+                            <mat-cell *matCellDef="let element;index as i" [formGroupName]="i">
+                                <mat-form-field class="tformfield">
+                                    <input matInput autocomplete="off" formControlName="unit">
+                                </mat-form-field>
+                            </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="longText">
+                            <mat-header-cell *matHeaderCellDef class="headercolor"> Long Text</mat-header-cell>
+                            <mat-cell *matCellDef="let element;index as i" [formGroupName]="i" class="boldtext">
+                                <mat-form-field class="tformfield">
+                                    <input matInput autocomplete="off" formControlName="longText">
+                                </mat-form-field>
+                            </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="min">
+                            <mat-header-cell *matHeaderCellDef class="headercolor"> Min</mat-header-cell>
+                            <mat-cell *matCellDef="let element;index as i" [formGroupName]="i">
+                                <mat-form-field class="tformfield">
+                                    <input type="number" matInput autocomplete="off" formControlName="min">
+                                </mat-form-field>
+                            </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="max">
+                            <mat-header-cell *matHeaderCellDef class="headercolor "> Max</mat-header-cell>
+                            <mat-cell *matCellDef="let element;index as i" [formGroupName]="i">
+                                <mat-form-field class="tformfield">
+                                    <input type="number" matInput autocomplete="off" formControlName="max">
+                                </mat-form-field>
+                            </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="icon">
+                            <mat-header-cell *matHeaderCellDef class="headercolor "> Icon</mat-header-cell>
+                            <mat-cell *matCellDef="let element;index as i" [formGroupName]="i">
+                                <mat-form-field class="tformfield">
+                                    <input matInput autocomplete="off" formControlName="icon">
+                                </mat-form-field>
+                            </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="isPercentage">
+                            <mat-header-cell *matHeaderCellDef class="headercolor ">IsPercentage</mat-header-cell>
+                            <mat-cell *matCellDef="let element;index as i" [formGroupName]="i">
+                                <mat-form-field class="tformfield">
+                                    <input matInput autocomplete="off" formControlName="isPercentage">
+                                </mat-form-field>
+                            </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="color">
+                            <mat-header-cell *matHeaderCellDef class="headercolor ">Color</mat-header-cell>
+                            <mat-cell *matCellDef="let element;index as i" [formGroupName]="i">
+                                <mat-form-field class="tformfield">
+                                    <input matInput autocomplete="off" formControlName="color">
+                                </mat-form-field>
+                            </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="delete">
+                            <mat-header-cell *matHeaderCellDef class="headercolor aligncenter" style="margin-left:-3%">
+                                Delete</mat-header-cell>
+                            <mat-cell *matCellDef="let element;index as i" [formGroupName]="i" class="aligncenter"
+                                style="margin-left:-3%">
+                                <mat-icon (click)="removeparam(i)" style="color: red;cursor:pointer">delete</mat-icon>
+                            </mat-cell>
+                        </ng-container>
+
+                        <mat-header-row *matHeaderRowDef="displayedColumns" class="colheader"></mat-header-row>
+                        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                    </mat-table>
+                </div>
+            </form>
+
         </div>
-    </form>
-    </div>
         <button mat-fab color="primary" (click)="create()" style="position: absolute;
         bottom: 5rem;
         right: 3rem;
         background-color: #4660CE;">
             <mat-icon>add</mat-icon>
-          </button>
-        <div class="footer" fxLayout="row" fxLayoutAlign="end center">
-            <button *ngIf="!isCreate" class="foo_button1" mat-button (click)="handle_delete()">Delete</button>
-            <button *ngIf="!isCreate" class="foo_button2" mat-button (click)="handle_update()">Update</button>
-            <button *ngIf="isCreate" class="foo_button1" mat-button (click)="handle_clear()">Clear</button>
-            <button *ngIf="isCreate" class="foo_button2" mat-button (click)="handle_create()">Create</button>
+        </button>
+        <div class="footer" fxLayout="row" fxLayoutAlign="space-between center">
+            <button class="foo_button1" style="margin-left: 1rem;" mat-button (click)="handle_copy()">Copy</button>
+            <div fxLayout="row" fxLayoutAlign="space-evenly center">
+                <button *ngIf="!isCreate" class="foo_button1" mat-button (click)="DeleteClicked()">Delete</button>
+                <button *ngIf="!isCreate" class="foo_button2" mat-button (click)="handle_update()">Update</button>
+                <button *ngIf="isCreate" class="foo_button1" mat-button (click)="handle_clear()">Clear</button>
+                <button *ngIf="isCreate" class="foo_button2" mat-button (click)="handle_create()">Create</button>
+            </div>
         </div>
     </div>
 </div>
